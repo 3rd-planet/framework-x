@@ -1,5 +1,5 @@
 const methods = require('../helpers/methods')
-const ModelName = require('../models/model');
+const {User} = require('../models')
 
 exports.index = async (req, res) => {
     res.send(methods.successResponse(

@@ -1,10 +1,13 @@
-require('dotenv').config();
+const database = require('./database.json')[process.env.NODE_ENV]
+const {Sequelize, DataTypes} = require('sequelize')
 
-const {Sequelize} = require('sequelize')
-const sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
-    host: process.env.DB_HOST,
-    dialect: process.env.DB_CONNECTION
-});
+const sequelize = new Sequelize(
+    database.database,
+    database.username,
+    database.password, {
+        host: database.host,
+        dialect: database.dialect
+    });
 
 async function testMysqlConnection() {
     try {
@@ -15,6 +18,9 @@ async function testMysqlConnection() {
     }
 }
 
-testMysqlConnection().then()
+//testMysqlConnection().then()
 
-module.exports = sequelize
+module.exports = {
+    sequelize,
+    DataTypes
+};
