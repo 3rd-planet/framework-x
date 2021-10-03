@@ -1,10 +1,14 @@
 {
   "name": "create-express-boilerplate",
-  "version": "1.2.1",
-  "description": "",
+  "version": "1.2.2",
+  "description": "basic setup for node api, using express js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/msamgan/expressjs-api-boilerplate.git"
   },
   "author": "msamgan",
   "license": "ISC",
@@ -15,6 +19,14 @@
     "mysql2": "^2.2.5",
     "sequelize": "^6.3.5"
   },
+  "keywords": [
+    "api",
+    "expressjs",
+    "nodejs",
+    "backend",
+    "server",
+    "node server"
+  ],
   "bin": {
     "create-express-boilerplate": "bin/installer.js"
   }
