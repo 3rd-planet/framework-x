@@ -16,6 +16,6 @@
     "sequelize": "^6.3.5"
   },
   "bin": {
-    "create-express-boilerplate": "./bin/generate-app.js"
+    "create-express-boilerplate": "bin/installer.js"
   }
 }
