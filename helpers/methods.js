@@ -14,7 +14,6 @@ exports.successResponse = (message, payload) => {
  * @returns {{message, status: boolean}}
  */
 exports.failResponse = (message, payload = null) => {
-
     let response = {
         status: false,
         message: message,
