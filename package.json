@@ -1,6 +1,6 @@
 {
-  "name": "express_api_boilerplate",
-  "version": "1.0.0",
+  "name": "create-express-boilerplate",
+  "version": "1.1.7",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,6 @@
     "sequelize": "^6.3.5"
   },
   "bin": {
-    "create-express-boilerplate": "./generate-app.js"
+    "create-express-boilerplate": "./bin/generate-app.js"
   }
 }
