@@ -4,14 +4,7 @@ This package provides you, basic setup for api creation in node, using express J
 ## Installation
 
 ```shell
-git clone git@github.com:msamgan/expressjs-api-boilerplate.git
-```
-```shell
-cd expressjs-api-boilerplate
-```
-
-```shell
-npm install
+npx create-express-boilerplate my-api
 ```
 
 ```shell
