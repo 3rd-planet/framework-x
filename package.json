@@ -1,5 +1,5 @@
 {
-  "name": "api.ecom",
+  "name": "express_api_boilerplate",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,5 +14,8 @@
     "express-validator": "^6.12.2",
     "mysql2": "^2.2.5",
     "sequelize": "^6.3.5"
+  },
+  "bin": {
+    "create-express-boilerplate": "./generate-app.js"
   }
 }
