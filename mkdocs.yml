@@ -1,7 +1,11 @@
 site_name: Express JS Api Boilerplate
 nav:
   - Home: index.md
-  - About: about.md
+  - Getting Started: getting_started.md
+  - Directory Structure: directory_structure.md
+  - Available Scripts: available_scripts.md
+  - Deployment: deployment.md
+  - Resources: resources.md
 theme:
   name: material
   highlightjs: true
