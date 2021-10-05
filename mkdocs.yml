@@ -1,4 +1,4 @@
-site_name: My Docs
+site_name: Express JS Api Boilerplate
 nav:
   - Home: index.md
   - About: about.md
