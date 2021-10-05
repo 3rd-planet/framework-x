@@ -7,6 +7,11 @@ const util = require('util');
 const fs = require('fs');
 const exec = util.promisify(require('child_process').exec);
 
+/**
+ *
+ * @param command
+ * @returns {Promise<void>}
+ */
 async function runCmd(command) {
     try {
         const {stdout, stderr} = await exec(command);
@@ -46,6 +51,10 @@ try {
     process.exit(1);
 }
 
+/**
+ *
+ * @returns {Promise<void>}
+ */
 async function setup() {
     try {
         console.log('\x1b[33m', 'Downloading the project structure...', '\x1b[0m');

@@ -2,6 +2,13 @@ const {validationResult} = require('express-validator');
 
 const methods = require('../../helpers/methods');
 
+/**
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns {*}
+ */
 module.exports = (req, res, next) => {
     let errors = validationResult(req);
     if (!errors.isEmpty()) {

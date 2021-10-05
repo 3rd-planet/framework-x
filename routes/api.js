@@ -1,9 +1,11 @@
 const IndexController = require('../controllers/index.controller')
 
+/**
+ *
+ * @param app
+ * @param validators
+ */
 module.exports = function(app, validators){
-    /**
-     * static URLS to be on top..
-     */
     app.get('/', IndexController.index)
     app.post('/', validators.indexValidator, IndexController.indexPost)
 }
