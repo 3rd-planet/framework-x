@@ -4,10 +4,14 @@
 
 const path = require('path');
 const util = require('util');
-const packageJson = require('../package.json');
 const fs = require('fs');
 const exec = util.promisify(require('child_process').exec);
 
+/**
+ *
+ * @param command
+ * @returns {Promise<void>}
+ */
 async function runCmd(command) {
     try {
         const {stdout, stderr} = await exec(command);
@@ -23,7 +27,7 @@ async function runCmd(command) {
 if (process.argv.length < 3) {
     console.log('\x1b[31m', 'You have to provide name to your app.');
     console.log('For example:');
-    console.log('    npx react-parcel-app my-app', '\x1b[0m');
+    console.log('    npx create-express-boilerplate my-app', '\x1b[0m');
     process.exit(1);
 }
 
@@ -47,6 +51,10 @@ try {
     process.exit(1);
 }
 
+/**
+ *
+ * @returns {Promise<void>}
+ */
 async function setup() {
     try {
         console.log('\x1b[33m', 'Downloading the project structure...', '\x1b[0m');

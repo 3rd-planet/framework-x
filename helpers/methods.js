@@ -1,4 +1,11 @@
 const {response} = require("express");
+
+/**
+ *
+ * @param message
+ * @param payload
+ * @returns {{package, message, status: boolean}}
+ */
 exports.successResponse = (message, payload) => {
     return {
         status: true,
@@ -26,6 +33,10 @@ exports.failResponse = (message, payload = null) => {
     return response
 }
 
+/**
+ *
+ * @type {{message: string, status: boolean}}
+ */
 exports.notFountResponse = {
     status: false,
     message: 'Unable to find the requested resource!',
