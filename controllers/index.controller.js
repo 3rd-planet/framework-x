@@ -1,6 +1,12 @@
 const methods = require('../helpers/methods')
 const {User} = require('../models')
 
+/**
+ *
+ * @param req
+ * @param res
+ * @returns {Promise<void>}
+ */
 exports.index = async (req, res) => {
     res.send(methods.successResponse(
         'Express JS API Boiler Plate working like a charm...',
@@ -10,6 +16,12 @@ exports.index = async (req, res) => {
     ))
 }
 
+/**
+ *
+ * @param req
+ * @param res
+ * @returns {Promise<void>}
+ */
 exports.indexPost = async (req, res) => {
     res.send(methods.successResponse(
         'Express JS API Boiler Plate post api working like a charm...',
