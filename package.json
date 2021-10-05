@@ -11,6 +11,14 @@
     "url": "https://github.com/msamgan/expressjs-api-boilerplate.git"
   },
   "author": "msamgan",
+  "contributors": [
+    {
+      "email": "mohdsamgankhan@gmail.com",
+      "name": "Mohd Samgan Khan",
+      "url": "https://github.com/msamgan"
+    }
+  ],
+
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
