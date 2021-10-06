@@ -18,4 +18,4 @@ Many thanks to all our contributors, who put there tremendous efforts to make th
 
 [msamgan](https://github.com/msamgan/)
 <br>
-[HuDaQeshta](https://github.com/hudaQeshta/)
+[hudaQeshta](https://github.com/hudaQeshta/)
