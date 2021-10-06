@@ -4,7 +4,8 @@
   "description": "basic setup for node api, using express js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -16,6 +17,11 @@
       "email": "mohdsamgankhan@gmail.com",
       "name": "Mohd Samgan Khan",
       "url": "https://github.com/msamgan"
+    },
+    {
+      "email": "Qeshta.w.huda@gmail.com",
+      "name": "Huda Qeshta",
+      "url": "https://github.com/HuDaQeshta"
     }
   ],
   "license": "ISC",
@@ -24,6 +30,7 @@
     "express": "^4.17.1",
     "express-validator": "^6.12.2",
     "mysql2": "^2.2.5",
+    "nodemon": "^2.0.13",
     "sequelize": "^6.3.5"
   },
   "keywords": [
