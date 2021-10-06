@@ -2,7 +2,7 @@
 
 ## Installation
 
-```shell
+```
 npx create-express-boilerplate my-api
 ```
 
@@ -12,14 +12,14 @@ npx create-express-boilerplate my-api
 
 Express JS api boilerplate, works in three diffrent environments and can be controlled by **.env file in the root directory**
 
-```dotenv
+```
 create .env from .env.example 
 ```
 you can decide the port of your own choice, but the default port is 5000
 
 ones the env is set up run
 
-```shell
+```
 node index.js
 ```
 
