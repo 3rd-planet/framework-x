@@ -27,7 +27,7 @@ async function runCmd(command) {
 if (process.argv.length < 3) {
     console.log('\x1b[31m', 'You have to provide name to your app.');
     console.log('For example:');
-    console.log('    npx create-express-boilerplate my-app', '\x1b[0m');
+    console.log('    npx create-express-boilerplate my-api', '\x1b[0m');
     process.exit(1);
 }
 
@@ -62,13 +62,25 @@ async function setup() {
 
         process.chdir(appPath);
 
+        await fs.copyFile('./.env.example', '.env', () => {
+            console.log(
+                '\x1b[32m',
+                'Creating Environment... !',
+                '\x1b[0m'
+            );
+        })
+
         console.log('\x1b[34m', 'Installing dependencies...', '\x1b[0m');
         await runCmd('npm install');
         console.log();
 
         await runCmd('npx rimraf ./.git');
+        await runCmd('npx rimraf ./docs');
 
         fs.rmdirSync(path.join(appPath, 'bin'), {recursive: true});
+        fs.unlink('./mkdocs.yml', () => {
+            //
+        });
 
         console.log(
             '\x1b[32m',
