@@ -3,22 +3,14 @@ This package provides you, basic setup for api creation in node, using express J
 
 ## Installation
 
-```shell
+```
 npx create-express-boilerplate my-api
 ```
 
-```shell
-node index.js
+```
+npm start
 ```
 
-#### note: please update .env (create if it does not exist, from .env.example) before starting the server. 
+## Documentation
 
-## Resources
-
-[express](https://expressjs.com/)
-<br>
-[sequelize](https://sequelize.org/)
-<br>
-[dotenv](https://www.npmjs.com/package/dotenv)
-<br>
-[express-validator](https://express-validator.github.io/docs/)
+[Click Here](https://msamgan.github.io/expressjs-api-boilerplate/) for the documentation

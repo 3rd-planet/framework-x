@@ -10,17 +10,14 @@ npx create-express-boilerplate my-api
 
 ## Environment Setup
 
-Express JS api boilerplate, works in three diffrent environments and can be controlled by **.env file in the root directory**
+Express JS api boilerplate, works in three different environments and can be controlled by **.env file in the root directory**
 
-```
-create .env from .env.example 
-```
 you can decide the port of your own choice, but the default port is 5000
 
-ones the env is set up run
+## Start Server
 
 ```
-node index.js
+npm start
 ```
 
 Then open **http://localhost:5000** to see your app up and running.
