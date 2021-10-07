@@ -3,6 +3,8 @@ import errorMiddleware from './middlewares/error.middleware'
 import * as validators from './middlewares/validators'
 
 import express from 'express'
+import {api} from './routes/api'
+
 const app = express()
 const port = process.env.PORT
 
@@ -13,7 +15,7 @@ app.listen(port, () => {
     console.log(`Example app listening at port http://localhost:${port}`)
 })
 
-require('./routes/api')(app, validators)
+api(app, validators)
 
 // Error Handler Middleware
 app.use(errorMiddleware)

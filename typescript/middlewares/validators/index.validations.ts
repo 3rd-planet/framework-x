@@ -5,7 +5,7 @@ import * as wrapperValidator from "./wrapper.validator"
  *
  * @type {(ValidationChain|(function(*=, *, *): (*|undefined)))[]}
  */
-export const indexValidator: Record<string, any> = [
+export const indexValidator: Record<string, any>[] = [
     body('key')
         .exists()
         .withMessage('key is required'),

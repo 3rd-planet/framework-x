@@ -11,6 +11,12 @@ npx create-express-boilerplate my-api
 node index.js
 ```
 
+## Typescript Template
+
+```shell
+npx create-express-boilerplate my-api typescript
+```
+
 #### note: please update .env (create if it does not exist, from .env.example) before starting the server. 
 
 ## Resources

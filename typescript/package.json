@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rimraf dist && tsc",
-    "dev": "export NODE_ENV=development; nodemon --exec ts-node index.ts --watch"
+    "compile": "rimraf dist && tsc",
+    "start": "nodemon --exec ts-node index.ts --watch"
   },
   "repository": {
     "type": "git",
