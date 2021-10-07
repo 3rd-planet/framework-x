@@ -7,7 +7,7 @@ npx create-express-boilerplate my-api
 ```
 ## Typescript Template
 
-```shell
+```
 npx create-express-boilerplate my-api typescript
 ```
 

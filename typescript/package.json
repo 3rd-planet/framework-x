@@ -30,7 +30,8 @@
     "express-validator": "^6.12.2",
     "mysql2": "^2.2.5",
     "sequelize": "^6.3.5",
-    "typescript": "^4.4.3"
+    "typescript": "^4.4.3",
+    "nodemon": "^2.0.13"
   },
   "keywords": [
     "api",
