@@ -6,28 +6,29 @@ const path = require('path')
 const util = require('util')
 const fs = require('fs')
 const exec = util.promisify(require('child_process').exec)
-let typescript = false;
+let typescript = false
+
 /**
  *
- * @param command
  * @returns {Promise<void>}
+ * @param src
+ * @param dest
  */
-
 function copyDir (src, dest) {
-	fs.mkdir(dest, {}, () => console.log("making directory"));
-	const files = fs.readdirSync(src);
+	fs.mkdir(dest, {}, () => console.log("making directory"))
+	const files = fs.readdirSync(src)
 	for (let i = 0; i < files.length; i++) {
-		const current = fs.lstatSync(path.join(src, files[i]));
+		const current = fs.lstatSync(path.join(src, files[i]))
 		if (current.isDirectory()) {
-			copyDir(path.join(src, files[i]), path.join(dest, files[i]));
+			copyDir(path.join(src, files[i]), path.join(dest, files[i]))
 		} else if (current.isSymbolicLink()) {
-			const symlink = fs.readlinkSync(path.join(src, files[i]));
-			fs.symlinkSync(symlink, path.join(dest, files[i]));
+			const symlink = fs.readlinkSync(path.join(src, files[i]))
+			fs.symlinkSync(symlink, path.join(dest, files[i]))
 		} else {
-			fs.copyFileSync(path.join(src, files[i]), path.join(dest, files[i]));
+			fs.copyFileSync(path.join(src, files[i]), path.join(dest, files[i]))
 		}
 	}
-};
+}
 
 
 async function runCmd(command) {
@@ -97,6 +98,14 @@ async function setup() {
 
 		process.chdir(appPath)
 
+		await fs.copyFile('./.env.example', '.env', () => {
+			console.log(
+				'\x1b[32m',
+				'Creating Environment... !',
+				'\x1b[0m'
+			);
+		})
+
 		console.log('\x1b[34m', 'Installing dependencies...', '\x1b[0m')
 
 		await runCmd('npm install')
@@ -105,6 +114,11 @@ async function setup() {
 		fs.rmdirSync(path.join(appPath, '.git'), { recursive: true })
 
 		fs.rmdirSync(path.join(appPath, 'bin'), { recursive: true })
+
+		await runCmd('npx rimraf ./docs');
+		fs.unlink('./mkdocs.yml', () => {
+			//
+		});
 
 		console.log(
 			'\x1b[32m',
