@@ -50,7 +50,7 @@ if (process.argv.length < 3) {
 }
 
 if (process.argv.length === 4 && process.argv.includes("typescript")) {
-	typescript = true;
+	typescript = true
 }
 
 const ownPath = process.cwd()
