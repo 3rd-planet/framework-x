@@ -101,7 +101,7 @@ async function setup() {
                     await fs.rmdirSync(path.join(appPath, element), {recursive: true})
                 }
             }
-            await copyDir(path.join(repo, 'typescript'), appPath)
+            await copyDir(path.join(appPath, 'typescript'), appPath)
         }
 
         await fs.rmdirSync(path.join(appPath, 'typescript'), {recursive: true})
