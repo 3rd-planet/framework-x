@@ -1,13 +1,11 @@
-const {body, param} = require('express-validator');
-const wrapperValidator = require("./wrapper.validator");
+const {body, param, ValidationChain} = require('express-validator');
 
 /**
  *
- * @type {(ValidationChain|(function(*=, *, *): (*|undefined)))[]}
+ * @type {ValidationChain[]}
  */
 exports.indexValidator = [
     body('key')
         .exists()
         .withMessage('key is required'),
-    wrapperValidator
 ];

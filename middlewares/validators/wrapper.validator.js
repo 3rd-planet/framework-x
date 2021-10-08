@@ -1,21 +1,24 @@
 const {validationResult} = require('express-validator');
-
 const methods = require('../../helpers/methods');
 
 /**
- *
- * @param req
- * @param res
- * @param next
- * @returns {*}
+ * sequential processing, stops running validations chain if the previous one have failed.
+ * @type {function(*): function(*=, *, *): Promise<*|undefined>}
  */
-module.exports = (req, res, next) => {
-    let errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(process.env.VALIDATION_FAIL_CODE).send(
+exports.validate = validations => {
+    return async (req, res, next) => {
+        for (let validation of validations) {
+            const result = await validation.run(req);
+            if (result.errors.length) break;
+        }
+
+        const errors = validationResult(req);
+        if (errors.isEmpty()) {
+            return next();
+        }
+
+        res.status(process.env.VALIDATION_FAIL_CODE).json(
             methods.failResponse('Validation failed', errors.array())
         );
-    }
-
-    next();
-}
+    };
+};
