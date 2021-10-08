@@ -31,7 +31,8 @@
     "express-validator": "^6.12.2",
     "mysql2": "^2.2.5",
     "prompt-sync": "^4.2.0",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "simple-node-logger": "^21.8.12"
   },
   "keywords": [
     "api",
