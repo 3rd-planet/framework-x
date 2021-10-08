@@ -8,31 +8,23 @@ const fs = require('fs')
 const exec = util.promisify(require('child_process').exec)
 let typescript = false
 
-/**
- *
- * @returns {Promise<void>}
- * @param src
- * @param dest
- */
-const copyDir = async (src, dest) => {
-
-    await fs.mkdir(dest, {}, () => {
-        console.log('\x1b[33m', 'Making Directory : ' + dest, '\x1b[0m')
-    })
-
-    const files = fs.readdirSync(src)
-    for (let i = 0; i < files.length; i++) {
-        const current = await fs.lstatSync(path.join(src, files[i]))
-        if (current.isDirectory()) {
-            await copyDir(path.join(src, files[i]), path.join(dest, files[i]))
-        } else if (current.isSymbolicLink()) {
-            const symlink = await fs.readlinkSync(path.join(src, files[i]))
-            await fs.symlinkSync(symlink, path.join(dest, files[i]))
-        } else {
-            await fs.copyFileSync(path.join(src, files[i]), path.join(dest, files[i]))
-        }
-    }
+if (process.argv.length < 3) {
+    console.log('\x1b[31m', 'You have to provide name to your app.')
+    console.log('    For example:')
+    console.log('    npx create-express-boilerplate my-app', '\x1b[0m')
+    process.exit(1)
 }
+
+if (process.argv.length === 4 && process.argv.includes("typescript")) {
+    typescript = true
+}
+
+const ownPath = process.cwd()
+const folderName = process.argv[2]
+const appPath = path.join(ownPath, folderName)
+let repo = typescript ?
+    'https://github.com/msamgan/expressjs-api-boilerplate-ts.git' :
+    'https://github.com/msamgan/expressjs-api-boilerplate.git'
 
 /**
  *
@@ -51,22 +43,6 @@ async function runCmd(command) {
         }
     }
 }
-
-if (process.argv.length < 3) {
-    console.log('\x1b[31m', 'You have to provide name to your app.')
-    console.log('For example:')
-    console.log('    npx create-express-boilerplate my-app', '\x1b[0m')
-    process.exit(1)
-}
-
-if (process.argv.length === 4 && process.argv.includes("typescript")) {
-    typescript = true
-}
-
-const ownPath = process.cwd()
-const folderName = process.argv[2]
-const appPath = path.join(ownPath, folderName)
-const repo = 'https://github.com/msamgan/expressjs-api-boilerplate.git'
 
 try {
     fs.mkdirSync(appPath)
@@ -92,20 +68,6 @@ async function setup() {
         console.log('\x1b[33m', 'Downloading the project structure...', '\x1b[0m')
         await runCmd(`git clone --depth 1 ${repo} ${folderName}`)
 
-        if (typescript) {
-            const listOfToDelete = ['helpers', 'middlewares', 'models', 'controllers', 'routes', 'index.js', 'package.json', 'package-lock.json']
-            for (const element of listOfToDelete) {
-                if (element?.includes('.')) {
-                    await fs.rmSync(path.join(appPath, element))
-                } else {
-                    await fs.rmdirSync(path.join(appPath, element), {recursive: true})
-                }
-            }
-            await copyDir(path.join(appPath, 'typescript'), appPath)
-        }
-
-        await fs.rmdirSync(path.join(appPath, 'typescript'), {recursive: true})
-
         process.chdir(appPath)
 
         await fs.copyFile('./.env.example', '.env', () => {
@@ -119,12 +81,14 @@ async function setup() {
         console.log('\x1b[34m', 'Installing dependencies...', '\x1b[0m')
 
         await runCmd('npm install --silent')
+
         await fs.rmdirSync(path.join(appPath, '.git'), {recursive: true})
         await fs.rmdirSync(path.join(appPath, 'bin'), {recursive: true})
         await fs.rmdirSync(path.join(appPath, 'docs'), {recursive: true})
         await fs.unlink('./mkdocs.yml', () => {
             //
         });
+
     } catch (error) {
         console.log(error)
     }
