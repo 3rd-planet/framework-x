@@ -66,7 +66,7 @@ if (process.argv.length === 4 && process.argv.includes("typescript")) {
 const ownPath = process.cwd()
 const folderName = process.argv[2]
 const appPath = path.join(ownPath, folderName)
-const repo = 'https://github.com/msamgan/expressjs-api-boilerplate.git'
+const repo = '/home/msamgan/Projects/expressjs-api-boilerplate'
 
 try {
     fs.mkdirSync(appPath)

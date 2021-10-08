@@ -1,12 +1,12 @@
 const IndexController = require('../controllers/index.controller')
 const {validate} = require('../middlewares/validators/wrapper.validator')
+const {indexValidator} = require("../middlewares/validators/index.validations");
 
 /**
  *
  * @param app
- * @param validators
  */
-module.exports = function (app, validators) {
+module.exports = function (app) {
     app.get('/', IndexController.index)
-    app.post('/', validate(validators.indexValidator), IndexController.indexPost)
+    app.post('/', validate(indexValidator), IndexController.indexPost)
 }
