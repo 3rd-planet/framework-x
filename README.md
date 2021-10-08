@@ -13,4 +13,4 @@ npm start
 
 ## Documentation
 
-[Click Here](https://msamgan.github.io/expressjs-api-boilerplate/) for the documentation
+[Click Here](https://create-express-boilerplate.com) for the documentation
