@@ -1,13 +1,7 @@
-import { body, param } from 'express-validator'
-import * as wrapperValidator from "./wrapper.validator"
+import {body, ValidationChain} from 'express-validator'
 
-/**
- *
- * @type {(ValidationChain|(function(*=, *, *): (*|undefined)))[]}
- */
-export const indexValidator: Record<string, any>[] = [
+export const indexValidator : ValidationChain[] = [
     body('key')
         .exists()
-        .withMessage('key is required'),
-    wrapperValidator
+        .withMessage('key is required')
 ]

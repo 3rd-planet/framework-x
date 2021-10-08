@@ -1,6 +1,5 @@
 require('dotenv').config();
 const errorMiddleware = require('./middlewares/error.middleware');
-const validators = require('./middlewares/validators');
 
 const express = require('express')
 const app = express()
@@ -13,7 +12,7 @@ app.listen(port, () => {
     console.log(`Example app listening at port http://localhost:${port}`)
 })
 
-require('./routes/api')(app, validators);
+require('./routes/api')(app);
 
 // Error Handler Middleware
 app.use(errorMiddleware);
