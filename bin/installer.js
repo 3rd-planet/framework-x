@@ -23,7 +23,7 @@ const ownPath = process.cwd()
 const folderName = process.argv[2]
 const appPath = path.join(ownPath, folderName)
 let repo = typescript ?
-    'https://github.com/msamgan/expressjs-api-boilerplate-ts.git' :
+    'https://github.com/hudaQeshta/expressjs-api-boilerplate-ts.git' :
     'https://github.com/msamgan/expressjs-api-boilerplate.git'
 
 /**
