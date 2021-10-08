@@ -19,6 +19,9 @@ const appPath = path.join(ownPath, folderName)
 const tsSupport = prompt("Enable typescript support y or n, (default n)? ");
 typescript = !!(tsSupport.length && (tsSupport.toLowerCase() === 'y' || tsSupport.toLowerCase() === 'yes'))
 
+let sequelizeSupport = prompt("Enable sequelize support y or n, (default n)? ");
+sequelizeSupport = !!(sequelizeSupport.length && (sequelizeSupport.toLowerCase() === 'y' || sequelizeSupport.toLowerCase() === 'yes'))
+
 let repo = typescript ?
     'https://github.com/hudaQeshta/expressjs-api-boilerplate-ts.git' :
     'https://github.com/msamgan/expressjs-api-boilerplate.git'
@@ -30,7 +33,7 @@ let repo = typescript ?
  */
 async function init() {
     await checkDirExist(appPath)
-    await setup(repo, folderName, appPath)
+    await setup(repo, folderName, appPath, sequelizeSupport)
 }
 
 init().then(r => {

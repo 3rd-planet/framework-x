@@ -7,9 +7,10 @@ const path = require("path");
  * @param repo
  * @param folderName
  * @param appPath
+ * @param sequelizeSupport
  * @returns {Promise<void>}
  */
-exports.setup = async (repo, folderName, appPath) => {
+exports.setup = async (repo, folderName, appPath, sequelizeSupport = false) => {
     try {
 
         console.log('\x1b[33m', 'Downloading the project structure...', '\x1b[0m')
@@ -28,7 +29,10 @@ exports.setup = async (repo, folderName, appPath) => {
         console.log('\x1b[34m', 'Installing dependencies...', '\x1b[0m')
 
         await runCmd('npm install --silent')
-        await runCmd('npx sequelize-cli init --force')
+
+        if (sequelizeSupport) {
+            await runCmd('npx sequelize-cli init --force')
+        }
 
         await fs.rmdirSync(path.join(appPath, '.git'), {recursive: true})
         await fs.rmdirSync(path.join(appPath, 'bin'), {recursive: true})

@@ -1,5 +1,4 @@
 const methods = require('../helpers/methods')
-const {User} = require('../models')
 
 /**
  *
