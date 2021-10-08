@@ -2,7 +2,7 @@ const indexValidator = require("./index.validations");
 
 /**
  *
- * @type {{indexValidator?: (ValidationChain|(function(*=, *, *): (*|undefined)))[]}}
+ * @type {{indexValidator?: ValidationChain[]}}
  */
 module.exports = {
     ...indexValidator
