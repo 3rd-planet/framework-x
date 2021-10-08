@@ -81,6 +81,7 @@ async function setup() {
         console.log('\x1b[34m', 'Installing dependencies...', '\x1b[0m')
 
         await runCmd('npm install --silent')
+        await runCmd('npx sequelize-cli init --force')
 
         await fs.rmdirSync(path.join(appPath, '.git'), {recursive: true})
         await fs.rmdirSync(path.join(appPath, 'bin'), {recursive: true})

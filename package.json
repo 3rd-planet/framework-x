@@ -30,7 +30,6 @@
     "express": "^4.17.1",
     "express-validator": "^6.12.2",
     "mysql2": "^2.2.5",
-    "nodemon": "^2.0.13",
     "sequelize": "^6.3.5"
   },
   "keywords": [
