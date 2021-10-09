@@ -73,6 +73,6 @@ inquirer.prompt(questions).then(async (answers) => {
     console.log(`    cd ${answers.app_name}`)
     console.log('    npm start', '\x1b[0m')
     console.log()
-    console.log('\x1b[32m', 'Check Readme.md for more information', '\x1b[0m')
+    console.log('\x1b[32m', 'Check documentation (https://create-express-boilerplate.com) for more information', '\x1b[0m')
     console.log()
 });

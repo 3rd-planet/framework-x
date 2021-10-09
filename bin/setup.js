@@ -35,12 +35,14 @@ exports.setup = async (answers) => {
             }
         }
 
+        console.log('\x1b[34m', 'Removing unwanted files...', '\x1b[0m')
+
         await fs.rmdirSync(path.join(answers.app_path, '.git'), {recursive: true})
         await fs.rmdirSync(path.join(answers.app_path, 'bin'), {recursive: true})
         await fs.rmdirSync(path.join(answers.app_path, 'docs'), {recursive: true})
-        await fs.unlink('./mkdocs.yml', () => {
-            //
-        });
+        await fs.unlinkSync('LICENSE');
+        await fs.unlinkSync('README.md');
+        await fs.unlinkSync('./mkdocs.yml');
 
     } catch (error) {
         console.log(error)
