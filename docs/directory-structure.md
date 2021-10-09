@@ -2,7 +2,22 @@
 
 After creation, your project should look like this:
 
-![](./assets/directory_structure.png)
+```
+├── controllers
+│   └── index.controller.js
+├── helpers
+│   └── methods.js
+├── index.js
+├── middlewares
+│   ├── error.middleware.js
+│   └── validators
+│       ├── index.validations.js
+│       └── wrapper.validator.js
+├── package.json
+├── package-lock.json
+└── routes
+    └── api.js
+```
 
 **index.js** is the JavaScript entry point.
 
