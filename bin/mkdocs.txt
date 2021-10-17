@@ -1,0 +1,6 @@
+pip install mkdocs
+pip install mkdocs-material
+windows:
+python -m mkdocs serve
+ubuntu:
+mkdocs serve
