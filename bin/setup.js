@@ -40,6 +40,14 @@ exports.setup = async (answers) => {
         await fs.rmdirSync(path.join(answers.app_path, '.git'), {recursive: true})
         await fs.rmdirSync(path.join(answers.app_path, 'bin'), {recursive: true})
         await fs.rmdirSync(path.join(answers.app_path, 'docs'), {recursive: true})
+
+        /**
+         * introducing Husky to the system...
+         */
+        await runCmd('git init')
+        await runCmd('npx husky-init')
+        await runCmd('npm install')
+
         await fs.unlinkSync('LICENSE');
         await fs.unlinkSync('README.md');
         await fs.unlinkSync('./mkdocs.yml');
