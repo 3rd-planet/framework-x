@@ -29,22 +29,22 @@ const questions = [
     },
     {
         type: 'confirm',
-        name: 'sequelize',
-        message: 'Enable sequelize support',
+        name: 'db_support',
+        message: 'Enable Database Support',
         default() {
             return false;
         }
     },
     {
         type: 'list',
-        name: 'sequelize_options',
-        message: 'Sequelize support for?',
-        choices: ['mysql', 'sqlite'],
+        name: 'db_support_options',
+        message: 'Database support for?',
+        choices: ['mongodb', 'mysql', 'sqlite'],
         filter(val) {
             return val.toLowerCase();
         },
         when(answers) {
-            return answers.sequelize;
+            return answers.db_support;
         },
     }
 ]
