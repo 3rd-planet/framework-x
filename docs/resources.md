@@ -11,6 +11,8 @@ Express api boilerplate comprised of the following resources
 [dotenv](https://www.npmjs.com/package/dotenv)
 <br>
 [express-validator](https://express-validator.github.io/docs/)
+<br>
+[simple node logger](https://www.npmjs.com/package/simple-node-logger)
 
 ## Contributors
 
