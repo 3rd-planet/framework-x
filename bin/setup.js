@@ -38,7 +38,7 @@ exports.setup = async (answers) => {
 				} else {
 					if (answers.db_support_options === 'mongodb') {
 						await runCmd('npm install --save mongoose')
-						await fs.copyFileSync('./bin/files/mongodb-connection.js', './config/db-connection.js')
+						await fs.copyFileSync('./bin/files/mongodb.connection.js', './config/db.connection.js')
 					}
 				}
 			}
