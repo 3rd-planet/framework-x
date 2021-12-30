@@ -1,4 +1,7 @@
 site_name: Express JS Api Boilerplate
+repo_url: https://github.com/msamgan/expressjs-api-boilerplate
+site_url: https://create-express-boilerplate.com
+site_author: msamgan
 nav:
   - Home: index.md
   - Getting Started: getting-started.md
