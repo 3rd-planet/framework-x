@@ -4,39 +4,63 @@
 
 const path = require('path')
 
-let typescript = false
-const prompt = require("prompt-sync")();
-
+const inquirer = require('inquirer');
 const {checkDirExist} = require('./methods')
 const {setup} = require('./setup')
 
 const ownPath = process.cwd()
 
-const appName = prompt("You have to provide name to your app. (my-api)? ");
-let folderName = appName.length ? appName : 'my-api'
-const appPath = path.join(ownPath, folderName)
+const questions = [
+    {
+        type: 'input',
+        name: 'app_name',
+        message: "You have to provide name to your app",
+        default() {
+            return 'my-api';
+        },
+    },
+    {
+        type: 'confirm',
+        name: 'typescript',
+        message: 'Enable typescript support',
+        default() {
+            return false;
+        }
+    },
+    {
+        type: 'confirm',
+        name: 'db_support',
+        message: 'Enable Database Support',
+        default() {
+            return false;
+        }
+    },
+    {
+        type: 'list',
+        name: 'db_support_options',
+        message: 'Database support for?',
+        choices: ['mongodb', 'mysql', 'sqlite'],
+        filter(val) {
+            return val.toLowerCase();
+        },
+        when(answers) {
+            return answers.db_support;
+        },
+    }
+]
 
-const tsSupport = prompt("Enable typescript support y or n, (default n)? ");
-typescript = !!(tsSupport.length && (tsSupport.toLowerCase() === 'y' || tsSupport.toLowerCase() === 'yes'))
+inquirer.prompt(questions).then(async (answers) => {
 
-let sequelizeSupport = prompt("Enable sequelize support y or n, (default n)? ");
-sequelizeSupport = !!(sequelizeSupport.length && (sequelizeSupport.toLowerCase() === 'y' || sequelizeSupport.toLowerCase() === 'yes'))
-
-let repo = typescript ?
-    'https://github.com/hudaQeshta/expressjs-api-boilerplate-ts.git' :
-    'https://github.com/msamgan/expressjs-api-boilerplate.git'
+    answers.repo = answers.typescript ?
+        'https://github.com/hudaQeshta/expressjs-api-boilerplate-ts.git' :
+        'https://github.com/msamgan/expressjs-api-boilerplate.git'
 
 
-/**
- *
- * @returns {Promise<void>}
- */
-async function init() {
-    await checkDirExist(appPath)
-    await setup(repo, folderName, appPath, sequelizeSupport)
-}
+    answers.app_path = path.join(ownPath, answers.app_name)
 
-init().then(r => {
+    await checkDirExist(answers.app_path)
+    await setup(answers)
+
     console.log(
         '\x1b[32m',
         'The installation is done, this is ready to use !',
@@ -46,9 +70,9 @@ init().then(r => {
     console.log()
 
     console.log('\x1b[34m', 'You can start by typing:')
-    console.log(`    cd ${folderName}`)
+    console.log(`    cd ${answers.app_name}`)
     console.log('    npm start', '\x1b[0m')
     console.log()
-    console.log('\x1b[32m', 'Check Readme.md for more information', '\x1b[0m')
+    console.log('\x1b[32m', 'Check documentation (https://create-express-boilerplate.com) for more information', '\x1b[0m')
     console.log()
-})
+});

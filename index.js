@@ -4,7 +4,10 @@ const accessLogMiddleware = require('./middlewares/logger.middleware');
 
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const port = process.env.PORT
+
+app.use(cors())
 
 app.use(express.json());
 
@@ -20,3 +23,5 @@ require('./routes/api')(app);
 
 // Error Handler Middleware
 app.use(errorMiddleware);
+
+module.exports = app
