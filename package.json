@@ -1,11 +1,12 @@
 {
   "name": "create-express-boilerplate",
-  "version": "3.0.0",
+  "version": "3.1.1",
   "description": "basic setup for node api, using express js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "test": "jest",
+    "start": "nodemon server.js",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
   ],
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-validator": "^6.12.2",
@@ -43,6 +45,9 @@
     "create-express-boilerplate": "bin/installer.js"
   },
   "devDependencies": {
-    "nodemon": "^2.0.13"
+    "jest": "^27.2.5",
+    "nodemon": "^2.0.13",
+    "supertest": "^6.1.6",
+    "husky": "^7.0.0"
   }
 }
