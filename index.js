@@ -1,22 +1,18 @@
-require('dotenv').config();
-const errorMiddleware = require('./middlewares/error.middleware');
-const accessLogMiddleware = require('./middlewares/logger.middleware');
+require("dotenv").config()
+const accessLogMiddleware = require("./middlewares/logger.middleware")
+const routes = require("./routes/api")
 
-const express = require('express')
+const express = require("express")
 const app = express()
-const cors = require('cors')
-const port = process.env.PORT
+const cors = require("cors")
 
 app.use(cors())
 
-app.use(express.json());
+app.use(express.json())
 
 // Req and Res logger.
-app.use(accessLogMiddleware);
+app.use(accessLogMiddleware)
 
-require('./routes/api')(app);
-
-// Error Handler Middleware
-app.use(errorMiddleware);
+app.use("/", routes)
 
 module.exports = app

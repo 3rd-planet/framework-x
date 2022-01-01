@@ -1,4 +1,4 @@
-const methods = require('../helpers/methods')
+const methods = require("../helpers/methods")
 
 /**
  *
@@ -7,12 +7,14 @@ const methods = require('../helpers/methods')
  * @returns {Promise<void>}
  */
 exports.index = async (req, res) => {
-    res.send(methods.successResponse(
-        'Express JS API Boiler Plate working like a charm...',
-        {
-            data: 'here comes you payload...'
-        }
-    ))
+    res.send(
+        methods.successResponse(
+            "Express JS API Boiler Plate working like a charm...",
+            {
+                data: "here comes you payload..."
+            }
+        )
+    )
 }
 
 /**
@@ -22,11 +24,13 @@ exports.index = async (req, res) => {
  * @returns {Promise<void>}
  */
 exports.indexPost = async (req, res) => {
-    res.send(methods.successResponse(
-        'Express JS API Boiler Plate post api working like a charm...',
-        {
-            data: 'here comes you payload...',
-            request: req.body,
-        }
-    ))
+    res.send(
+        methods.successResponse(
+            "Express JS API Boiler Plate post api working like a charm...",
+            {
+                data: "here comes you payload...",
+                request: req.body
+            }
+        )
+    )
 }
