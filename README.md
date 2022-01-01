@@ -4,11 +4,11 @@ This package provides you, basic setup for api creation in node, using express J
 
 ## Installation
 
-```
+```JS
 npx create-express-boilerplate
 ```
 
-```
+```JS
 npm start
 ```
 
