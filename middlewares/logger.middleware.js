@@ -1,7 +1,10 @@
-const accessLog = require('simple-node-logger').createSimpleLogger({
-    logFilePath: './log/access/' + (new Date().toLocaleDateString().split('/').join('-')) + '.log',
-    timestampFormat: 'YYYY-MM-DD HH:mm:ss'
-});
+const accessLog = require("simple-node-logger").createSimpleLogger({
+    logFilePath:
+        "./log/access/" +
+        new Date().toLocaleDateString().split("/").join("-") +
+        ".log",
+    timestampFormat: "YYYY-MM-DD HH:mm:ss"
+})
 
 /**
  *
@@ -11,7 +14,6 @@ const accessLog = require('simple-node-logger').createSimpleLogger({
  * @returns {*}
  */
 module.exports = (req, res, next) => {
-
     let reqObject = {
         method: req.method,
         path: req.path,
@@ -20,13 +22,15 @@ module.exports = (req, res, next) => {
     }
 
     let resObject = {
-        statusCode: res.statusCode,
+        statusCode: res.statusCode
     }
 
-    accessLog.info(JSON.stringify({
-        reqObject,
-        resObject
-    }))
+    accessLog.info(
+        JSON.stringify({
+            reqObject,
+            resObject
+        })
+    )
 
     next()
 }

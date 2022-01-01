@@ -1,5 +1,3 @@
-const {response} = require("express");
-
 /**
  *
  * @param message
@@ -23,7 +21,7 @@ exports.successResponse = (message, payload) => {
 exports.failResponse = (message, payload = null) => {
     let response = {
         status: false,
-        message: message,
+        message: message
     }
 
     if (payload) {
@@ -39,5 +37,5 @@ exports.failResponse = (message, payload = null) => {
  */
 exports.notFountResponse = {
     status: false,
-    message: 'Unable to find the requested resource!',
+    message: "Unable to find the requested resource!"
 }
