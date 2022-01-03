@@ -28,7 +28,7 @@
     "license": "ISC",
     "dependencies": {
         "cors": "^2.8.5",
-        "dotenv": "^8.2.0",
+        "dotenv": "^8.6.0",
         "express": "^4.17.1",
         "express-validator": "^6.12.2",
         "inquirer": "^8.2.0",
