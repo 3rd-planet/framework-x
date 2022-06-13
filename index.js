@@ -1,4 +1,6 @@
 require("dotenv").config()
+require("express-async-errors")
+
 const accessLogMiddleware = require("./middlewares/logger.middleware")
 const routes = require("./routes/api")
 
