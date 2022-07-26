@@ -1,8 +1,5 @@
 const accessLog = require("simple-node-logger").createSimpleLogger({
-    logFilePath:
-        "./log/access/" +
-        new Date().toLocaleDateString().split("/").join("-") +
-        ".log",
+    logFilePath: "./log/access/" + new Date().toLocaleDateString().split("/").join("-") + ".log",
     timestampFormat: "YYYY-MM-DD HH:mm:ss"
 })
 

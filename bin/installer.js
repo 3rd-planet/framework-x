@@ -59,11 +59,7 @@ inquirer.prompt(questions).then(async (answers) => {
     await checkDirExist(answers.app_path)
     await setup(answers)
 
-    console.log(
-        "\x1b[32m",
-        "The installation is done, this is ready to use !",
-        "\x1b[0m"
-    )
+    console.log("\x1b[32m", "The installation is done, this is ready to use !", "\x1b[0m")
 
     console.log()
 

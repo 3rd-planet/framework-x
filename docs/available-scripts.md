@@ -25,4 +25,5 @@ Launches the test runner.
 ```
 npm compile
 ```
+
 Compile the typescript to JS.
