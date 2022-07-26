@@ -11,7 +11,7 @@
         "ecmaVersion": 2020
     },
     "rules": {
-       "semi":  [2, "never"],
-       "no-case-declarations": "off"
+        "semi": [2, "never"],
+        "no-case-declarations": "off"
     }
 }

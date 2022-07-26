@@ -3,12 +3,12 @@ repo_url: https://github.com/msamgan/expressjs-api-boilerplate
 site_url: https://create-express-boilerplate.com
 site_author: msamgan
 nav:
-  - Home: index.md
-  - Getting Started: getting-started.md
-  - Directory Structure: directory-structure.md
-  - Available Scripts: available-scripts.md
-  - Deployment: deployment.md
-  - Resources: resources.md
+    - Home: index.md
+    - Getting Started: getting-started.md
+    - Directory Structure: directory-structure.md
+    - Available Scripts: available-scripts.md
+    - Deployment: deployment.md
+    - Resources: resources.md
 theme:
-  name: material
-  highlightjs: true
+    name: material
+    highlightjs: true
