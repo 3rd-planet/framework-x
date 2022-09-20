@@ -21,14 +21,6 @@ const questions = [
     },
     {
         type: "confirm",
-        name: "typescript",
-        message: "Enable typescript support (Maintained by third party, Huda W. Qeshta)",
-        default() {
-            return false
-        }
-    },
-    {
-        type: "confirm",
         name: "db_support",
         message: "Enable Database Support",
         default() {
@@ -50,12 +42,8 @@ const questions = [
 ]
 
 inquirer.prompt(questions).then(async (answers) => {
-    answers.repo = answers.typescript
-        ? "https://github.com/hudaQeshta/expressjs-api-boilerplate-ts.git"
-        : "https://github.com/msamgan/expressjs-api-boilerplate.git"
-
+    answers.repo = "https://github.com/msamgan/expressjs-api-boilerplate.git"
     answers.app_path = path.join(ownPath, answers.app_name)
-
     await checkDirExist(answers.app_path)
     await setup(answers)
 
