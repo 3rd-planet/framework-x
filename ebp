@@ -8,4 +8,12 @@ program.name("ebp").description("CLI Commands for Express Boilerplate").version(
 
 init(program)
 
+/**
+ * * add your commands here
+ * * use commander to add commands, https://www.npmjs.com/package/commander
+ * 
+ * 
+ * 
+ **/
+
 program.parse(process.argv)
