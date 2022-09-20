@@ -1,18 +1,11 @@
 #!/usr/bin/env node
 
 const { Command } = require("commander")
-const { buildController } = require("./cli/build")
+const { init } = require("./system/cli")
 const program = new Command()
 
-program.name("ebp-cli").description("CLI Commands for Express Boilerplate").version("0.0.1")
+program.name("ebp").description("CLI Commands for Express Boilerplate").version("0.0.1")
 
-program
-    .command("build:controller")
-    .description("Build Controller, Usage: node ebp build:controller <controller-name>")
-    .argument("<controllerName>", "Controller Name")
-    .action(async (controllerName) => {
-        console.log(`Building Controller: ${controllerName}`)
-        await buildController(controllerName)
-    })
+init(program)
 
 program.parse(process.argv)
