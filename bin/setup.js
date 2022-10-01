@@ -12,6 +12,9 @@ exports.setup = async (answers) => {
         console.log("\x1b[32m", "Creating Environment... !", "\x1b[0m")
         await fs.copyFileSync("./.env.example", ".env")
 
+        console.log("\x1b[32m", "Creating dependencies... !", "\x1b[0m")
+        await fs.copyFileSync("./bin/files/package.json", "./package.json")
+
         console.log("\x1b[34m", "Installing dependencies...", "\x1b[0m")
 
         await runCmd("npm install --silent")
