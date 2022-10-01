@@ -2,7 +2,7 @@
     "name": "create-express-boilerplate",
     "version": "3.4.1",
     "description": "basic setup for node api, using express js",
-    "main": "index.js",
+    "main": "server.js",
     "scripts": {
         "test": "jest",
         "start": "nodemon server.js",
@@ -35,9 +35,6 @@
         "express-async-errors": "^3.1.1",
         "express-validator": "^6.14.2",
         "inquirer": "^8.2.4",
-        "mysql2": "^2.2.5",
-        "prompt-sync": "^4.2.0",
-        "sequelize": "^6.21.4",
         "simple-node-logger": "^21.8.12"
     },
     "keywords": [
