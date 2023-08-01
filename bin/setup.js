@@ -103,9 +103,9 @@ exports.setup = async ({ app_path, db_support, db_support_options, clone_command
         await fs.unlinkSync("./mkdocs.yml")
 
         await fs.unlinkSync("README.md")
-        /*await fs.unlinkSync("./CODE_OF_CONDUCT.md")
+        await fs.unlinkSync("./CODE_OF_CONDUCT.md")
         await fs.unlinkSync("./CONTRIBUTING.md")
-        await fs.unlinkSync("./SECURITY.md")*/
+        await fs.unlinkSync("./SECURITY.md")
         await fs.unlinkSync("LICENSE")
 
     } catch (error) {
