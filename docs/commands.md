@@ -1,6 +1,6 @@
 # Commands
 
-framework-x ships with some in build commands to ease of your work flow.
+framework-x ships with some in build commands to ease of your work flow. Builds command supports directory e.g. node x build:controller v1/test. This will create a directory v1 and controller file test.js inside it.
 
 ## get help
 
@@ -16,12 +16,21 @@ list out all the available commands in the system.
 node x build:controller <controller-name>
 ```
 
-Builds controller files, supports directory e.g. node x build:controller v1/test
-
 ## Build Repository
 
 ```node
 node x build:repository <repository-name>
 ```
 
-Builds repository files, supports directory e.g. node x build:repository v1/test
+## Build Validator
+
+```node
+node x build:validator <validator-name>
+```
+
+## Build Middleware
+
+```node
+node x build:middleware <middleware-name>
+```
+
