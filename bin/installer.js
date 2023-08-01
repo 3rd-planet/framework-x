@@ -22,7 +22,7 @@ const questions = [
         name: "app_name",
         message: "You have to provide name to your app",
         default() {
-            return "my-api"
+            return "x-api"
         }
     },
     {
@@ -48,7 +48,7 @@ const questions = [
 ]
 
 inquirer.prompt(questions).then(async (answers) => {
-    const load = loading("Installing awesome framework...").start()
+    const load = loading("Installing awesome framework, framework-x ...").start()
 
     answers.clone_command = "git clone -b v" + version + " " + repoUrl + " " + answers.app_name
     answers.app_path = path.join(ownPath, answers.app_name)
@@ -66,7 +66,4 @@ inquirer.prompt(questions).then(async (answers) => {
         "Check documentation (https://create-express-boilerplate.com) for more information",
         "\x1b[0m"
     )
-    console.log()
-
-
 })
