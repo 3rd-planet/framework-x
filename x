@@ -5,7 +5,7 @@ const { init } = require("./system/cli")
 const program = new Command()
 const packageJson = require("./package.json")
 
-program.name("x").description("CLI Commands for Express Boilerplate").version(packageJson.version)
+program.name("x").description("CLI Commands for framework x").version(packageJson.version)
 
 init(program)
 
