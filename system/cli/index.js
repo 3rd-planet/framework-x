@@ -1,4 +1,4 @@
-const { buildController, buildRepository } = require("./build")
+const { buildController, buildRepository, buildValidator, buildMiddleware } = require("./build")
 
 /**
  * Initializes the program.
@@ -22,5 +22,23 @@ exports.init = async (program) => {
         .action(async (repositoryName) => {
             console.log(`Building Repository: ${repositoryName}`)
             await buildRepository(repositoryName)
+        })
+
+    program
+        .command("build:validator")
+        .description("Build Validator, Usage: node x build:validator <validator-name>")
+        .argument("<validatorName>", "Validator Name")
+        .action(async (validatorName) => {
+            console.log(`Building Validator: ${validatorName}`)
+            await buildValidator(validatorName)
+        })
+
+    program
+        .command("build:middleware")
+        .description("Build Middleware, Usage: node x build:middleware <middleware-name>")
+        .argument("<middlewareName>", "Middleware Name")
+        .action(async (middlewareName) => {
+            console.log(`Building Middleware: ${middlewareName}`)
+            await buildMiddleware(middlewareName)
         })
 }

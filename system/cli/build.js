@@ -1,21 +1,13 @@
 const fs = require("fs")
 const path = require("path")
 
-/**
- * Creates a controller file for the given controller name.
- * @param {string} name - The name of the controller.
- * @returns None
- */
-exports.buildController = async (name) => {
-    const filePath = path.join(__dirname, "../../controllers", `${name}.controller.js`)
-
+const builder = async (filePath, stubName) => {
     if (fs.existsSync(filePath)) {
-        console.log(`Controller ${name} already exists.`)
-        return
+        console.log(filePath + ` already exists.`)
+        return false
     }
 
-    const stub = fs.readFileSync(path.join(__dirname, "../stubs/controller.stubs"), "utf8")
-    const controller = stub.replace(/controller/g, name)
+    const stub = fs.readFileSync(path.join(__dirname, "../stubs/" + stubName), "utf8")
 
     let dirs = filePath.split("/")
     dirs.pop()
@@ -25,13 +17,28 @@ exports.buildController = async (name) => {
         fs.mkdirSync(dir, { recursive: true })
     }
 
-    fs.writeFile(filePath, controller, (err) => {
+    return fs.writeFile(filePath, stub, (err) => {
         if (err) {
             console.log(err)
-        } else {
-            console.log(`Controller ${name}.controller.js created successfully`)
+
+            return false
         }
+
+        return true
     })
+}
+
+/**
+ * Creates a controller file for the given controller name.
+ * @param {string} name - The name of the controller.
+ * @returns None
+ */
+exports.buildController = async (name) => {
+    const filePath = path.join(__dirname, "../../controllers", `${name}.controller.js`)
+
+    if (await builder(filePath, "controller.stubs")) {
+        console.log(`Controller ${name}.controller.js created successfully`)
+    }
 }
 
 /**
@@ -48,27 +55,28 @@ exports.buildRepository = async (name) => {
 
     const filePath = path.join(repoDir, `${name}.repository.js`)
 
-    if (fs.existsSync(filePath)) {
-        console.log(`Repository ${name} already exists.`)
-        return
+    if (await builder(filePath, "repository.stubs")) {
+        console.log(`Repository ${name}.repository.js created successfully`)
     }
+}
 
-    const stub = fs.readFileSync(path.join(__dirname, "../stubs/repository.stubs"), "utf8")
-    const repository = stub.replace(/repositoryName/g, name)
+/**
+ *
+ * @param name
+ * @returns {Promise<void>}
+ */
+exports.buildValidator = async (name) => {
+    const filePath = path.join(__dirname, "../../middlewares/validators", `${name}.validations.js`)
 
-    let dirs = filePath.split("/")
-    dirs.pop()
-
-    const dir = dirs.join("/")
-    if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, { recursive: true })
+    if (await builder(filePath, "validator.stubs")) {
+        console.log(`Validator ${name}.validation.js created successfully`)
     }
+}
 
-    fs.writeFile(filePath, repository, (err) => {
-        if (err) {
-            console.log(err)
-        } else {
-            console.log(`Repository ${name}.repository.js created successfully`)
-        }
-    })
+exports.buildMiddleware = async (name) => {
+    const filePath = path.join(__dirname, "../../middlewares", `${name}.middleware.js`)
+
+    if (await builder(filePath, "middleware.stubs")) {
+        console.log(`Middleware ${name}.middleware.js created successfully`)
+    }
 }
