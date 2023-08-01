@@ -2,7 +2,51 @@ const { runCmd } = require("./methods")
 const fs = require("fs")
 const path = require("path")
 
+/**
+ *
+ * @type {string[]}
+ */
+const dependencies = [
+    "commander",
+    "cors",
+    "dotenv",
+    "express",
+    "express-async-errors",
+    "express-validator",
+    "simple-node-logger",
+    "loading-cli"
+]
 
+/**
+ *
+ * @type {string[]}
+ */
+const devDependencies = [
+    "jest",
+    "nodemon",
+    "supertest",
+    "husky"
+]
+
+/**
+ *
+ * @returns {Promise<void>}
+ */
+const dependenciesInstall = async () => {
+    for (const dependency of dependencies) {
+        await runCmd("npm install --save " + dependency)
+    }
+
+    for (const dependency of devDependencies) {
+        await runCmd("npm install --save-dev " + dependency)
+    }
+}
+
+/**
+ *
+ * @param db_support_options
+ * @returns {Promise<void>}
+ */
 const dbInstall = async (db_support_options) => {
     await runCmd("npm install --save sequelize")
     await runCmd("npx sequelize-cli init --force")
@@ -32,7 +76,8 @@ exports.setup = async ({ app_path, db_support, db_support_options, clone_command
         process.chdir(app_path)
         await fs.copyFileSync("./.env.example", ".env")
         await fs.copyFileSync("./bin/files/package.json", "./package.json")
-        await runCmd("npm install --silent")
+
+        await dependenciesInstall()
 
         if (db_support && typeof db_support_options !== "undefined") {
             await dbInstall(db_support_options)
@@ -58,9 +103,9 @@ exports.setup = async ({ app_path, db_support, db_support_options, clone_command
         await fs.unlinkSync("./mkdocs.yml")
 
         await fs.unlinkSync("README.md")
-        /*await fs.unlinkSync("./CODE_OF_CONDUCT.md")
+        await fs.unlinkSync("./CODE_OF_CONDUCT.md")
         await fs.unlinkSync("./CONTRIBUTING.md")
-        await fs.unlinkSync("./SECURITY.md")*/
+        await fs.unlinkSync("./SECURITY.md")
         await fs.unlinkSync("LICENSE")
 
     } catch (error) {
