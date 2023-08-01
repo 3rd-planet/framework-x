@@ -10,7 +10,7 @@ npx create-express-boilerplate
 
 ## Environment Setup
 
-Express JS api boilerplate, works in three different environments and can be controlled by **.env file in the root directory**
+framework-x, works in three different environments and can be controlled by **.env file in the root directory**
 
 you can decide the port of your own choice, but the default port is 5000
 

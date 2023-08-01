@@ -1,6 +1,6 @@
-# ExpressJs Api Boilerplate
+# framework-x
 
-This package provides you, basic setup for api creation in node, using express JS.
+This package provides you, basic setup for api creation in node, using Express.js
 
 ## Installation
 

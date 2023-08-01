@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 const { runCmd } = require("./methods")
 const packageJson = require("../package.json")
 
