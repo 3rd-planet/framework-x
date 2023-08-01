@@ -2,54 +2,49 @@ const { runCmd } = require("./methods")
 const fs = require("fs")
 const path = require("path")
 
-exports.setup = async (answers) => {
-    try {
-        console.log("\x1b[33m", "Downloading the project structure...", "\x1b[0m")
-        await runCmd(`git clone --depth 1 ${answers.repo} ${answers.app_name}`)
 
-        process.chdir(answers.app_path)
+const dbInstall = async (db_support_options) => {
+    await runCmd("npm install --save sequelize")
+    await runCmd("npx sequelize-cli init --force")
 
-        console.log("\x1b[32m", "Creating Environment... !", "\x1b[0m")
-        await fs.copyFileSync("./.env.example", ".env")
-
-        console.log("\x1b[32m", "Creating dependencies... !", "\x1b[0m")
-        await fs.copyFileSync("./bin/files/package.json", "./package.json")
-
-        console.log("\x1b[34m", "Installing dependencies...", "\x1b[0m")
-
-        await runCmd("npm install --silent")
-
-        if (answers.db_support) {
-            if (typeof answers.db_support_options !== "undefined") {
-                await runCmd("npm install --save sequelize")
-                await runCmd("npx sequelize-cli init --force")
-                if (["mysql", "sqlite"].includes(answers.db_support_options)) {
-                    if (answers.db_support_options === "mysql") {
-                        await runCmd("npm install --save mysql2")
-                    }
-
-                    if (answers.db_support_options === "sqlite") {
-                        await runCmd("npm install --save sqlite3")
-                        await fs.copyFileSync("./bin/files/sqlite.config.json", "./config/config.json")
-                    }
-                } else {
-                    if (answers.db_support_options === "mongodb") {
-                        await runCmd("npm install --save mongoose")
-                        await fs.copyFileSync("./bin/files/mongodb.connection.js", "./config/db.connection.js")
-                    }
-                }
-            }
+    if (["mysql", "sqlite"].includes(db_support_options)) {
+        if (db_support_options === "mysql") {
+            await runCmd("npm install --save mysql2")
         }
 
-        console.log("\x1b[34m", "Removing unwanted files...", "\x1b[0m")
+        if (db_support_options === "sqlite") {
+            await runCmd("npm install --save sqlite3")
+            await fs.copyFileSync("./bin/files/sqlite.config.json", "./config/config.json")
+        }
 
-        await fs.rmdirSync(path.join(answers.app_path, ".git"), {
+        return
+    }
+
+    if (db_support_options === "mongodb") {
+        await runCmd("npm install --save mongoose")
+        await fs.copyFileSync("./bin/files/mongodb.connection.js", "./config/db.connection.js")
+    }
+}
+
+exports.setup = async ({ app_path, db_support, db_support_options, clone_command }) => {
+    try {
+        await runCmd(clone_command)
+        process.chdir(app_path)
+        await fs.copyFileSync("./.env.example", ".env")
+        await fs.copyFileSync("./bin/files/package.json", "./package.json")
+        await runCmd("npm install --silent")
+
+        if (db_support && typeof db_support_options !== "undefined") {
+            await dbInstall(db_support_options)
+        }
+
+        await fs.rmSync(path.join(app_path, ".git"), {
             recursive: true
         })
-        await fs.rmdirSync(path.join(answers.app_path, "bin"), {
+        await fs.rmSync(path.join(app_path, "bin"), {
             recursive: true
         })
-        await fs.rmdirSync(path.join(answers.app_path, "docs"), {
+        await fs.rmSync(path.join(app_path, "docs"), {
             recursive: true
         })
 
@@ -60,9 +55,14 @@ exports.setup = async (answers) => {
         await runCmd("npx husky-init")
         await runCmd("npm install")
 
-        await fs.unlinkSync("LICENSE")
-        await fs.unlinkSync("README.md")
         await fs.unlinkSync("./mkdocs.yml")
+
+        await fs.unlinkSync("README.md")
+        /*await fs.unlinkSync("./CODE_OF_CONDUCT.md")
+        await fs.unlinkSync("./CONTRIBUTING.md")
+        await fs.unlinkSync("./SECURITY.md")*/
+        await fs.unlinkSync("LICENSE")
+
     } catch (error) {
         console.log(error)
 
