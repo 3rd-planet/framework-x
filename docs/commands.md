@@ -1,6 +1,6 @@
 # Commands
 
-Express boilerplate ships with some in build commands to ease of your work flow.
+framework-x ships with some in build commands to ease of your work flow.
 
 ## get help
 

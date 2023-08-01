@@ -1,5 +1,5 @@
-site_name: Express JS Api Boilerplate
-repo_url: https://github.com/msamgan/expressjs-api-boilerplate
+site_name: 3rd planet | framework x Documentation
+repo_url: https://github.com/3rd-planet/framework-x.git
 site_url: https://create-express-boilerplate.com
 site_author: msamgan
 nav:
@@ -9,7 +9,7 @@ nav:
     - Available Scripts: available-scripts.md
     - Commands: commands.md
     - Deployment: deployment.md
-    - Resources: resources.md
+    - Contributors: contributors.md
 theme:
     name: material
     highlightjs: true
