@@ -7,8 +7,14 @@ const path = require("path")
 const inquirer = require("inquirer")
 const { checkDirExist } = require("./methods")
 const { setup } = require("./setup")
+const packageJson = require("../package.json")
+
+const loading = require("loading-cli")
 
 const ownPath = process.cwd()
+
+const repoUrl = "https://github.com/3rd-planet/framework-x.git"
+const version = packageJson.version
 
 const questions = [
     {
@@ -42,16 +48,16 @@ const questions = [
 ]
 
 inquirer.prompt(questions).then(async (answers) => {
-    answers.repo = "https://github.com/msamgan/expressjs-api-boilerplate.git"
+    const load = loading("Installing awesome framework...").start()
+
+    answers.clone_command = "git clone -b v" + version + " " + repoUrl + " " + answers.app_name
     answers.app_path = path.join(ownPath, answers.app_name)
     await checkDirExist(answers.app_path)
     await setup(answers)
 
-    console.log("\x1b[32m", "The installation is done, this is ready to use !", "\x1b[0m")
+    load.stop()
 
-    console.log()
-
-    console.log("\x1b[34m", "You can start by typing:")
+    console.log("\x1b[34m", "Get started...")
     console.log(`    cd ${answers.app_name}`)
     console.log("    npm start", "\x1b[0m")
     console.log()
@@ -61,4 +67,6 @@ inquirer.prompt(questions).then(async (answers) => {
         "\x1b[0m"
     )
     console.log()
+
+
 })
