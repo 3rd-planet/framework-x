@@ -14,7 +14,8 @@ const dependencies = [
     "express-async-errors",
     "express-validator",
     "simple-node-logger",
-    "loading-cli"
+    "loading-cli",
+    "@3rdplanet/x-core"
 ]
 
 /**

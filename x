@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const { Command } = require("commander")
-const { init } = require("./system/cli")
+const { init } = require("@3rdplanet/x-core")
 const program = new Command()
 const packageJson = require("./package.json")
 
