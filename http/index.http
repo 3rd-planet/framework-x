@@ -1,1 +1,10 @@
-GET http://127.0.0.1:5000 HTTP/1.1
+GET http://127.0.0.1:3000
+
+###
+
+POST http://127.0.0.1:3000
+Content-Type: application/json
+
+{
+  "key": "value"
+}
