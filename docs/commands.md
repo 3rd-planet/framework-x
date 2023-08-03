@@ -9,28 +9,3 @@ node x -h
 ```
 
 list out all the available commands in the system.
-
-## Build Controller
-
-```node
-node x build:controller <controller-name>
-```
-
-## Build Repository
-
-```node
-node x build:repository <repository-name>
-```
-
-## Build Validator
-
-```node
-node x build:validator <validator-name>
-```
-
-## Build Middleware
-
-```node
-node x build:middleware <middleware-name>
-```
-
