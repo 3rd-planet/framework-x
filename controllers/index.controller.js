@@ -8,7 +8,7 @@ const { successResponse } = require("../helpers/methods")
  */
 exports.index = async (req, res) => {
     res.send(
-        successResponse("Express JS API Boiler Plate working like a charm...", {
+        successResponse("framework-x is working like a charm...", {
             data: "here comes you payload..."
         })
     )
@@ -22,7 +22,7 @@ exports.index = async (req, res) => {
  */
 exports.indexPost = async (req, res) => {
     res.send(
-        successResponse("Express JS API Boiler Plate post api working like a charm...", {
+        successResponse("framework-x post api is working like a charm...", {
             data: "here comes you payload...",
             request: req.body
         })

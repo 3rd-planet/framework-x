@@ -63,7 +63,7 @@ inquirer.prompt(questions).then(async (answers) => {
     console.log()
     console.log(
         "\x1b[32m",
-        "Check documentation (https://create-express-boilerplate.com) for more information",
+        "Check documentation (https://3rd-planet.github.io/framework-x/) for more information",
         "\x1b[0m"
     )
 })
