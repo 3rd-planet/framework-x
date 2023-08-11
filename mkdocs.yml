@@ -1,6 +1,6 @@
 site_name: 3rd planet | framework x
 repo_url: https://github.com/3rd-planet/framework-x.git
-site_url: https://create-express-boilerplate.com
+site_url: https://3rd-planet.github.io/framework-x/
 site_author: msamgan
 nav:
     - Home: index.md

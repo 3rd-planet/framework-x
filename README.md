@@ -5,7 +5,7 @@ This package provides you, basic setup for api creation in node, using Express.j
 ## Installation
 
 ```JS
-npx create-express-boilerplate
+npx @3rdplanet/framework-x
 ```
 
 ```JS
@@ -14,4 +14,4 @@ npm start
 
 ## Documentation
 
-[Click Here](https://create-express-boilerplate.com) for the documentation
+[Click Here](https://3rd-planet.github.io/framework-x/) for the documentation
