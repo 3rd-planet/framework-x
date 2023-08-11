@@ -1,12 +1,26 @@
+const { validationResult } = require("express-validator")
+
 /**
  *
  * @param message
  * @param payload
- * @returns {{package, message, status: boolean}}
+ * @param statusCode
+ * @returns {
+ *     {
+ *     message: *,
+ *     status: boolean,
+ *     status_code: number,
+ *     package: *
+ *     }
+ * }
+ * @example
+ *  const { successResponse } = require("../helpers/methods")
+ *  res.status(200).json(successResponse("User created successfully", user, 200))
  */
-exports.successResponse = (message, payload) => {
+exports.successResponse = (message, payload, statusCode = 200) => {
     return {
         status: true,
+        status_code: statusCode,
         message: message,
         package: payload
     }
@@ -16,11 +30,24 @@ exports.successResponse = (message, payload) => {
  *
  * @param message
  * @param payload
- * @returns {{message, status: boolean}}
- */
-exports.failResponse = (message, payload = null) => {
+ * @param statusCode
+ * @returns {
+ *     {
+ *     message: *,
+ *     status: boolean,
+ *     status_code: number,
+ *     package: *
+ *     }
+ * }
+ * @example
+ *  const { failResponse } = require("../helpers/methods")
+ *  res.status(400).json(failResponse("Validation failed", errors.array(), 400))
+ *
+ * */
+exports.failResponse = (message, payload = null, statusCode = 400) => {
     let response = {
         status: false,
+        status_code: statusCode,
         message: message
     }
 
@@ -29,4 +56,31 @@ exports.failResponse = (message, payload = null) => {
     }
 
     return response
+}
+
+/**
+ * sequential processing, stops running validations chain if the previous one have failed.
+ * @param validations
+ * @returns {function(*=, *=, *): Promise<*>}
+ * @example
+ *  const { validate } = require("../helpers/methods")
+ *  const { indexValidator } = require("../middlewares/validators/index.validations")
+ *  router.post("/", validate(indexValidator), IndexController.indexPost)
+ */
+exports.validate = (validations) => {
+    return async (req, res, next) => {
+        for (let validation of validations) {
+            const result = await validation.run(req)
+            if (result.errors.length) break
+        }
+
+        const errors = validationResult(req)
+        if (errors.isEmpty()) {
+            return next()
+        }
+
+        res.status(parseInt(process.env.VALIDATION_FAIL_CODE)).json(
+            this.failResponse("Validation failed", errors.array())
+        )
+    }
 }

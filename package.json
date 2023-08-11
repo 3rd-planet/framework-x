@@ -1,6 +1,6 @@
 {
-    "name": "create-express-boilerplate",
-    "version": "3.6.1",
+    "name": "@3rdplanet/framework-x",
+    "version": "4.0.0",
     "description": "basic setup for node api, using express js",
     "main": "server.js",
     "scripts": {
@@ -12,7 +12,7 @@
         "type": "git",
         "url": "https://github.com/3rd-planet/framework-x.git"
     },
-    "homepage": "https://create-express-boilerplate.com/",
+    "homepage": "https://3rd-planet.github.io/framework-x/",
     "author": "msamgan",
     "contributors": [
         {
@@ -28,6 +28,7 @@
     ],
     "license": "ISC",
     "dependencies": {
+        "@3rdplanet/x-core": "^1.4.2",
         "commander": "^9.5.0",
         "cors": "^2.8.5",
         "dotenv": "^8.6.0",
@@ -48,7 +49,7 @@
         "node server"
     ],
     "bin": {
-        "create-express-boilerplate": "bin/installer.js"
+        "@3rdplanet/framework-x": "bin/installer.js"
     },
     "devDependencies": {
         "husky": "^7.0.0",
