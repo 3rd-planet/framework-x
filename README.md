@@ -14,7 +14,7 @@
 ![GitHub watchers](https://img.shields.io/github/watchers/3rd-planet/framework-x?style=social)
 
 <p align="center" width="100%">
-    <img width="33%" src="https://github.com/3rd-planet/framework-x/assets/29948727/d4d45c71-2bdd-4d73-aced-2ddef2e3b234">
+    <img width="35%" src="https://github.com/3rd-planet/framework-x/assets/29948727/8e60ecf3-9490-427b-a0ae-b57556c311d0">
 </p>
 
 This package provides you, basic setup for api creation in node, using Express.js
