@@ -3,7 +3,6 @@ import "express-async-errors"
 import express, { Application } from "express"
 import cors from "cors"
 import { loadRoutes } from "./helpers/methods"
-import "./process"
 
 import accessLogMiddleware from "./middlewares/logger.middleware"
 

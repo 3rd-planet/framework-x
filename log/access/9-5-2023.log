@@ -93,3 +93,6 @@
 2023-09-05 17:27:53 INFO  {"reqObject":{"method":"GET","path":"/","param":{},"body":{}},"resObject":{"statusCode":200}} 
 2023-09-05 17:27:53 INFO  {"reqObject":{"method":"GET","path":"/","param":{},"body":{}},"resObject":{"statusCode":200}} 
 2023-09-05 17:27:53 INFO  {"reqObject":{"method":"GET","path":"/","param":{},"body":{}},"resObject":{"statusCode":200}} 
+2023-09-05 17:38:54 INFO  {"reqObject":{"method":"POST","path":"/","param":{},"body":{"ky":"value"}},"resObject":{"statusCode":200}} 
+2023-09-05 17:39:29 INFO  {"reqObject":{"method":"POST","path":"/","param":{},"body":{"ky":"value"}},"resObject":{"statusCode":200}} 
+2023-09-05 17:40:52 INFO  {"reqObject":{"method":"POST","path":"/","param":{},"body":{"key":"value"}},"resObject":{"statusCode":200}} 
