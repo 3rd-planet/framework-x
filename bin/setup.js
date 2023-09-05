@@ -22,12 +22,7 @@ const dependencies = [
  *
  * @type {string[]}
  */
-const devDependencies = [
-    "jest",
-    "nodemon",
-    "supertest",
-    "husky"
-]
+const devDependencies = ["jest", "nodemon", "supertest", "husky"]
 
 /**
  *
@@ -90,9 +85,6 @@ exports.setup = async ({ app_path, db_support, db_support_options, clone_command
         await fs.rmSync(path.join(app_path, "bin"), {
             recursive: true
         })
-        await fs.rmSync(path.join(app_path, "docs"), {
-            recursive: true
-        })
 
         /**
          * introducing Husky to the system...
@@ -101,14 +93,11 @@ exports.setup = async ({ app_path, db_support, db_support_options, clone_command
         await runCmd("npx husky-init")
         await runCmd("npm install")
 
-        await fs.unlinkSync("./mkdocs.yml")
-
         await fs.unlinkSync("README.md")
         await fs.unlinkSync("./CODE_OF_CONDUCT.md")
         await fs.unlinkSync("./CONTRIBUTING.md")
         await fs.unlinkSync("./SECURITY.md")
         await fs.unlinkSync("LICENSE")
-
     } catch (error) {
         console.log(error)
 
