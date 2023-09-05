@@ -22,12 +22,7 @@ const dependencies = [
  *
  * @type {string[]}
  */
-const devDependencies = [
-    "jest",
-    "nodemon",
-    "supertest",
-    "husky"
-]
+const devDependencies = ["jest", "nodemon", "supertest", "husky"]
 
 /**
  *
@@ -103,7 +98,6 @@ exports.setup = async ({ app_path, db_support, db_support_options, clone_command
         await fs.unlinkSync("./CONTRIBUTING.md")
         await fs.unlinkSync("./SECURITY.md")
         await fs.unlinkSync("LICENSE")
-
     } catch (error) {
         console.log(error)
 

@@ -4,7 +4,6 @@ const { loadRoutes } = require("./helpers/methods")
 
 const accessLogMiddleware = require("./middlewares/logger.middleware")
 
-
 const express = require("express")
 
 /**

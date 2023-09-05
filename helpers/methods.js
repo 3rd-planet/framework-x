@@ -92,16 +92,15 @@ exports.validate = (validations) => {
 exports.loadRoutes = (app) => {
     const routesFiles = require("fs").readdirSync("./routes")
     routesFiles.forEach((file) => {
-            const route = require(`../routes/${file}`)
-            let routeName = file.split(".")[0]
+        const route = require(`../routes/${file}`)
+        let routeName = file.split(".")[0]
 
-            /**
-             * If route name is api, then remove it from the route name.
-             * As api.route.js is the default route file.
-             */
-            routeName === "api" ? routeName = "" : routeName = routeName + "/"
+        /**
+         * If route name is api, then remove it from the route name.
+         * As api.route.js is the default route file.
+         */
+        routeName === "api" ? (routeName = "") : (routeName = routeName + "/")
 
-            app.use(`/${routeName}`, route)
-        }
-    )
+        app.use(`/${routeName}`, route)
+    })
 }
