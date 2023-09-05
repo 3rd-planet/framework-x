@@ -31,4 +31,4 @@ npm start
 
 ## Documentation
 
-[Click Here](https://3rd-planet.github.io/framework-x/) for the documentation
+[Click Here](https://www.frameworkx.info/) for the documentation
