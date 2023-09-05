@@ -1,7 +1,7 @@
 {
     "name": "@3rdplanet/framework-x",
-    "version": "1.0.0",
-    "description": "basic setup for node api, using express js typescript",
+    "version": "4.1.0",
+    "description": "basic setup for node api, using express js",
     "main": "server.js",
     "scripts": {
         "test": "jest",
