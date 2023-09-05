@@ -16,12 +16,14 @@
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
     "express-validator": "^7.0.1",
     "nodemon": "^3.0.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.14",
     "@types/express": "^4.17.17",
+    "simple-node-logger": "^21.8.12",
     "typescript": "^5.2.2"
   }
 }

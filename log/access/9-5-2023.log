@@ -31,3 +31,5 @@
 2023-09-05 11:27:33 INFO  {"reqObject":{"method":"GET","path":"/favicon.ico","param":{},"body":{}},"resObject":{"statusCode":200}} 
 2023-09-05 14:10:27 INFO  {"reqObject":{"method":"GET","path":"/","param":{},"body":{}},"resObject":{"statusCode":200}} 
 2023-09-05 14:10:27 INFO  {"reqObject":{"method":"GET","path":"/favicon.ico","param":{},"body":{}},"resObject":{"statusCode":200}} 
+2023-09-05 16:55:27 INFO  {"reqObject":{"method":"GET","path":"/","param":{},"body":{}},"resObject":{"statusCode":200}} 
+2023-09-05 16:55:27 INFO  {"reqObject":{"method":"GET","path":"/favicon.ico","param":{},"body":{}},"resObject":{"statusCode":200}} 
