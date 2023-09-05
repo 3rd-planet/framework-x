@@ -1,4 +1,5 @@
-const { successResponse } = require("../helpers/methods")
+import { successResponse } from "../helpers/methods"
+import { Request, Response } from "express"
 
 /**
  *
@@ -6,8 +7,8 @@ const { successResponse } = require("../helpers/methods")
  * @param res
  * @returns {Promise<void>}
  */
-exports.index = async (req, res) => {
-    res.send(
+export const index = async (req: Request, res: Response): Promise<Response> => {
+    return res.send(
         successResponse("framework-x is working like a charm...", {
             data: "here comes you payload..."
         })
@@ -20,11 +21,12 @@ exports.index = async (req, res) => {
  * @param res
  * @returns {Promise<void>}
  */
-exports.indexPost = async (req, res) => {
-    res.send(
+export const indexPost = async (req: Request, res: Response): Promise<Response> => {
+    return res.send(
         successResponse("framework-x post api is working like a charm...", {
             data: "here comes you payload...",
             request: req.body
         })
     )
 }
+

@@ -1,5 +1,5 @@
 import dotenv from "dotenv"
-import express, { Request, Response, Application } from "express"
+import express, { Application } from "express"
 import cors from "cors"
 import { loadRoutes } from "./helpers/methods"
 
