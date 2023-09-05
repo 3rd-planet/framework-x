@@ -2,11 +2,11 @@
   "name": "framework-x",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "server.ts",
   "scripts": {
     "build": "npx tsc",
-    "start": "node dist/index.js",
-    "dev": "nodemon index.ts",
+    "start": "node dist/server.js",
+    "dev": "nodemon server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
