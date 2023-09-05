@@ -13,8 +13,7 @@ const express = require("express")
 const app = express()
 
 /**
- *
- * @type {(function(*): function(*, *, *): void)|{}}
+ * @type {(<T=e.CorsRequest extends e.CorsRequest>(options?: (e.CorsOptions | e.CorsOptionsDelegate<T>)) => (req: T, res: {statusCode?: number | undefined, setHeader(key: string, value: string): any, end(): any}, next: (err?: any) => any) => void) | e}
  */
 const cors = require("cors")
 
