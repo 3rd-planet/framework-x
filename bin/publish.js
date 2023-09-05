@@ -23,10 +23,6 @@ const publish = async () => {
     console.log(gitPushTag)
     await runCmd(gitPushTag)
 
-    let docPublish = "mkdocs gh-deploy"
-    console.log(docPublish)
-    await runCmd(docPublish)
-
     let npmPublish = "npm publish"
     console.log(npmPublish)
     await runCmd(npmPublish)
