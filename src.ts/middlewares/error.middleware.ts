@@ -3,7 +3,8 @@ import { createSimpleLogger } from "simple-node-logger"
 import type { ErrorRequestHandler, NextFunction, Request, Response } from "express"
 
 const errorLog = createSimpleLogger({
-    logFilePath: __dirname + "/../../log/error/" + new Date().toLocaleDateString().split("/").join("-") + ".log",
+    logFilePath:
+        __dirname + "/../../log/error/" + new Date().toLocaleDateString().split("/").join("-") + ".log",
     timestampFormat: "YYYY-MM-DD HH:mm:ss"
 })
 

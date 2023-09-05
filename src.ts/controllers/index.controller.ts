@@ -8,9 +8,6 @@ import { Request, Response } from "express"
  * @returns {Promise<void>}
  */
 export const index = async (req: Request, res: Response): Promise<Response> => {
-
-    throw new Error("test error")
-
     return res.send(
         successResponse("framework-x is working like a charm...", {
             data: "here comes you payload..."
@@ -32,4 +29,3 @@ export const indexPost = async (req: Request, res: Response): Promise<Response> 
         })
     )
 }
-

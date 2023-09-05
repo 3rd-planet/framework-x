@@ -2,7 +2,8 @@ import { NextFunction, Request, Response } from "express"
 import { createSimpleLogger } from "simple-node-logger"
 
 const accessLog = createSimpleLogger({
-    logFilePath: __dirname + "/../../log/access/" + new Date().toLocaleDateString().split("/").join("-") + ".log",
+    logFilePath:
+        __dirname + "/../../log/access/" + new Date().toLocaleDateString().split("/").join("-") + ".log",
     timestampFormat: "YYYY-MM-DD HH:mm:ss"
 })
 

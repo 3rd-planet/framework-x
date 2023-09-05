@@ -1,14 +1,13 @@
 import { Application, NextFunction, Request, Response } from "express"
 import { ValidationChain, validationResult } from "express-validator"
 
-
 /**
  * @interface formattedResponse
  */
 interface formattedResponse {
-    status: boolean,
-    status_code: number,
-    message: String,
+    status: boolean
+    status_code: number
+    message: String
     package?: object | null
 }
 
@@ -29,7 +28,11 @@ interface formattedResponse {
  *  const { successResponse } = require("../helpers/methods")
  *  res.status(200).json(successResponse("User created successfully", user, 200))
  */
-export const successResponse = (message: String, payload: Object, statusCode: number = 200): formattedResponse => {
+export const successResponse = (
+    message: String,
+    payload: Object,
+    statusCode: number = 200
+): formattedResponse => {
     return {
         status: true,
         status_code: statusCode,
@@ -56,7 +59,11 @@ export const successResponse = (message: String, payload: Object, statusCode: nu
  *  res.status(400).json(failResponse("Validation failed", errors.array(), 400))
  *
  * */
-export const failResponse = (message: String, payload: Object | null = null, statusCode: number = 400): formattedResponse => {
+export const failResponse = (
+    message: String,
+    payload: Object | null = null,
+    statusCode: number = 400
+): formattedResponse => {
     return {
         status: false,
         status_code: statusCode,
@@ -74,7 +81,7 @@ export const failResponse = (message: String, payload: Object | null = null, sta
  *  const { indexValidator } = require("../middlewares/validators/index.validations")
  *  router.post("/", validate(indexValidator), IndexController.indexPost)
  */
-export const validate = (validations: ValidationChain[]): () => any => {
+export const validate = (validations: ValidationChain[]): (() => any) => {
     // @ts-ignore
     return async (req: Request, res: Response, next: NextFunction) => {
         for (let validation of validations) {
@@ -87,7 +94,6 @@ export const validate = (validations: ValidationChain[]): () => any => {
         if (errors.isEmpty()) {
             return next()
         }
-
 
         // @ts-ignore
         res.status(parseInt(process.env.VALIDATION_FAIL_CODE)).json(
@@ -103,7 +109,6 @@ export const validate = (validations: ValidationChain[]): () => any => {
 export const loadRoutes = (app: Application): void => {
     const routesFiles = require("fs").readdirSync(__dirname + "/../routes")
     routesFiles.forEach(async (file: String) => {
-
         let routeName = file.split(".")[0]
 
         /**
@@ -111,7 +116,6 @@ export const loadRoutes = (app: Application): void => {
          * As api.route.js is the default route file.
          */
         routeName === "api" ? (routeName = "") : (routeName = routeName + "/")
-
 
         app.use(`/${routeName}`, (await import(`../routes/${file}`)).default)
     })
