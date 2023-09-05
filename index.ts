@@ -1,14 +1,16 @@
 import dotenv from "dotenv"
-import express, { Express, Request, Response, Application } from "express"
+import express, { Request, Response, Application } from "express"
+import cors from "cors"
+import { loadRoutes } from "./helpers/methods"
 
-//For env File
 dotenv.config()
 
 const app: Application = express()
 
-app.get("/", (req: Request, res: Response) => {
-    res.send("Welcome to Express & TypeScript Server")
-})
+app.use(cors())
 
+app.use(express.json())
+
+loadRoutes(app)
 
 export default app
