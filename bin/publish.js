@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 const { runCmd } = require("./methods")
-const packageJson = require("../src.ts/package.json")
+const packageJson = require("../package.json")
 
 const publish = async () => {
     let v = "v" + packageJson.version
