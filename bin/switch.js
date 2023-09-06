@@ -1,5 +1,6 @@
 const fs = require("fs")
 const packageJsonfile = require("../package.json")
+const { runCmd } = require("./methods")
 
 const switchMode = async (argvs) => {
     if (argvs.length < 3) {
@@ -72,14 +73,9 @@ const switchToTS = async () => {
 }
 
 const writePackageJson = async (updatePackageJson) => {
-    console.log(JSON.stringify(updatePackageJson))
-    console.log("----------")
-    console.log("if package.json is not updated, copy the above json and paste it to package.json, format it and run \"pnpm install\"")
-    console.log("----------")
-    console.log("----------")
-    await fs.writeFile("../package.json", JSON.stringify(updatePackageJson, null, 4), (err) => {
+    await fs.writeFile("./package.json", JSON.stringify(updatePackageJson, null, 4), (err) => {
         if (err) throw err
-        //console.log("package.json updated")
+        runCmd("pnpm install")
     })
 }
 
