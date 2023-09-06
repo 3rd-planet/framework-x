@@ -1,4 +1,4 @@
-const { runCmd, checkDirExist, checkAndMakeDir } = require("./methods")
+const { runCmd } = require("./methods")
 const fs = require("fs")
 const path = require("path")
 
