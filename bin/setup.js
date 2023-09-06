@@ -25,7 +25,7 @@ const dependencies = [
  */
 const devDependencies = ["jest", "nodemon", "supertest", "husky"]
 
-const tsDevDependencies = ["@types/jest", "@types/supertest", "@types/cors", "@types/express", "ts-jest", "typescript", "ts-node", "ts-node-dev"]
+const tsDevDependencies = ["@types/jest", "@types/supertest", "@types/cors", "@types/express", "ts-jest", "typescript", "ts-node", "ts-node-dev", "@types/node"]
 
 /**
  *
@@ -51,7 +51,7 @@ const dependenciesInstall = async (app_mode, app_package_manager) => {
 const dbInstall = async (
     app_orm,
     app_db,
-    app_package_manager,
+    app_package_manager
 ) => {
 
     let appPath = path.join(process.cwd())
@@ -71,6 +71,8 @@ const dbInstall = async (
     if (app_orm === "sequelize") {
         await runCmd(app_package_manager + " install --save sequelize")
 
+        fs.copyFileSync(appPath + "/bin/files/.sequelizerc", appPath + "/.sequelizerc")
+
         if (app_db === "mysql") {
             await runCmd(app_package_manager + " install --save mysql2")
             await runCmd("npx sequelize-cli init --force")
@@ -80,7 +82,7 @@ const dbInstall = async (
         if (app_db === "sqlite") {
             await runCmd(app_package_manager + " install --save sqlite3")
             await runCmd("npx sequelize-cli init --force")
-            await fs.copyFileSync("./bin/files/sqlite.config.json", "./config/config.json")
+            await fs.copyFileSync("./bin/files/sqlite.config.json", "./db.config.json")
             return
         }
 
