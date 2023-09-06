@@ -30,7 +30,6 @@ const switchMode = async (argvs) => {
     }
 }
 
-
 const switchToJS = async () => {
     console.log("Switching to JS")
     console.log("----------")
@@ -39,14 +38,12 @@ const switchToJS = async () => {
     const jsPackageJson = require("../src.js/package.json")
     const tsPackageJson = require("../src.ts/package.json")
 
-    let uncombinedDevDependencies =
-        Object.keys(packageJsonfile.devDependencies)
-            .filter(key => !Object.keys(tsPackageJson.devDependencies).includes(key))
-            .reduce((obj, key) => {
-                    obj[key] = packageJsonfile.devDependencies[key]
-                    return obj
-                }
-                , {})
+    let uncombinedDevDependencies = Object.keys(packageJsonfile.devDependencies)
+        .filter((key) => !Object.keys(tsPackageJson.devDependencies).includes(key))
+        .reduce((obj, key) => {
+            obj[key] = packageJsonfile.devDependencies[key]
+            return obj
+        }, {})
 
     let updatedPackageJson = {
         ...packageJsonfile,

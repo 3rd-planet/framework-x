@@ -26,7 +26,14 @@
         "husky": "^7.0.0",
         "jest": "^27.2.5",
         "nodemon": "^2.0.13",
-        "supertest": "^6.1.6"
+        "supertest": "^6.1.6",
+        "@types/supertest": "^2.0.12",
+        "@types/cors": "^2.8.14",
+        "@types/express": "^4.17.17",
+        "@types/jest": "^29.5.4",
+        "ts-jest": "^29.1.1",
+        "typescript": "^5.2.2",
+        "ts-node-dev": "^2.0.0"
     },
     "keywords": [
         "api",
@@ -46,15 +53,18 @@
         "singleQuote": false,
         "printWidth": 112
     },
-    "main": "src.js/server.js",
+    "main": "src.ts/server.ts",
     "scripts": {
-        "start": "nodemon src.js/server.js",
+        "start": "nodemon src.ts/server.ts",
         "test": "jest",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "build": "npx tsc"
     },
     "jest": {
         "testMatch": [
-            "**/src.js/**/*.test.js"
-        ]
+            "**/src.ts/**/*.test.ts"
+        ],
+        "preset": "ts-jest",
+        "testEnvironment": "node"
     }
 }

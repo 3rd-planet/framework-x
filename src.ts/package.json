@@ -8,8 +8,10 @@
     },
     "jest": {
         "testMatch": [
-            "**/src.ts/**/*.test.js"
-        ]
+            "**/src.ts/**/*.test.ts"
+        ],
+        "preset": "ts-jest",
+        "testEnvironment": "node"
     },
     "devDependencies": {
         "@types/supertest": "^2.0.12",
