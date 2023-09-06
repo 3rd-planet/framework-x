@@ -46,31 +46,52 @@ const dependenciesInstall = async (app_mode, app_package_manager) => {
     }
 }
 
-/**
- *
- * @param db_support_options
- * @returns {Promise<void>}
- */
-const dbInstall = async (db_support_options) => {
-    await runCmd("npm install --save sequelize")
-    await runCmd("npx sequelize-cli init --force")
 
-    if (["mysql", "sqlite"].includes(db_support_options)) {
-        if (db_support_options === "mysql") {
-            await runCmd("npm install --save mysql2")
-        }
+const dbInstall = async (
+    app_orm,
+    app_db,
+    app_package_manager
+) => {
 
-        if (db_support_options === "sqlite") {
-            await runCmd("npm install --save sqlite3")
-            await fs.copyFileSync("./bin/files/sqlite.config.json", "./config/config.json")
-        }
-
+    if (app_orm === "mongoose") {
+        await runCmd(app_package_manager + " install --save mongoose")
+        await fs.copyFileSync("./bin/files/mongodb.connection.js", "./config/db.connection.js")
         return
     }
 
-    if (db_support_options === "mongodb") {
-        await runCmd("npm install --save mongoose")
-        await fs.copyFileSync("./bin/files/mongodb.connection.js", "./config/db.connection.js")
+    if (app_orm === "sequelize") {
+        await runCmd(app_package_manager + " install --save sequelize")
+        await runCmd("npx sequelize-cli init --force")
+
+        if (app_db === "mysql") {
+            await runCmd(app_package_manager + " install --save mysql2")
+            return
+        }
+
+        if (app_db === "sqlite") {
+            await runCmd(app_package_manager + " install --save sqlite3")
+            await fs.copyFileSync("./bin/files/sqlite.config.json", "./config/config.json")
+            return
+        }
+
+        if (app_db === "postgres") {
+            await runCmd(app_package_manager + " install --save pg pg-hstore")
+            return
+        }
+
+        if (app_db === "mariadb") {
+            await runCmd(app_package_manager + " install --save mariadb")
+            return
+        }
+
+        if (app_db === "tedious") {
+            await runCmd(app_package_manager + " install --save tedious")
+            return
+        }
+
+        if (app_db === "oracledb") {
+            await runCmd(app_package_manager + " install --save oracledb")
+        }
     }
 }
 
@@ -123,10 +144,6 @@ exports.setup = async ({ app_path, app_mode, app_orm, app_db, app_package_manage
             recursive: true
         })
 
-        /*if (db_support && typeof db_support_options !== "undefined") {
-            await dbInstall(db_support_options)
-        }*/
-
         let direToRemove = [
             ".git",
             ".github",
@@ -169,6 +186,12 @@ exports.setup = async ({ app_path, app_mode, app_orm, app_db, app_package_manage
         await runCmd("git init")
         await runCmd("npx husky-init")
         await runCmd(app_package_manager + " install")
+
+
+        if (app_orm !== "none") {
+            await dbInstall(app_orm, app_db, app_package_manager)
+        }
+
     } catch (error) {
         console.log(error)
 
