@@ -1,6 +1,7 @@
-const { runCmd } = require("./methods")
+const { runCmd, checkDirExist, checkAndMakeDir } = require("./methods")
 const fs = require("fs")
 const path = require("path")
+
 
 /**
  *
@@ -50,26 +51,35 @@ const dependenciesInstall = async (app_mode, app_package_manager) => {
 const dbInstall = async (
     app_orm,
     app_db,
-    app_package_manager
+    app_package_manager,
 ) => {
+
+    let appPath = path.join(process.cwd())
 
     if (app_orm === "mongoose") {
         await runCmd(app_package_manager + " install --save mongoose")
-        await fs.copyFileSync("./bin/files/mongodb.connection.js", "./config/db.connection.js")
+
+        if (!fs.existsSync(appPath + "/config")) {
+            await fs.mkdirSync(appPath + "/config")
+        }
+
+        fs.copyFileSync(appPath + "/bin/files/mongodb.connection.js", appPath + "/config/db.connection.js")
+
         return
     }
 
     if (app_orm === "sequelize") {
         await runCmd(app_package_manager + " install --save sequelize")
-        await runCmd("npx sequelize-cli init --force")
 
         if (app_db === "mysql") {
             await runCmd(app_package_manager + " install --save mysql2")
+            await runCmd("npx sequelize-cli init --force")
             return
         }
 
         if (app_db === "sqlite") {
             await runCmd(app_package_manager + " install --save sqlite3")
+            await runCmd("npx sequelize-cli init --force")
             await fs.copyFileSync("./bin/files/sqlite.config.json", "./config/config.json")
             return
         }
@@ -135,7 +145,7 @@ exports.setup = async ({ app_path, app_mode, app_orm, app_db, app_package_manage
         await fs.copyFileSync("./bin/files/package.json", "./package.json")
 
         await updatePackageJson(app_mode, app_orm, app_db, app_package_manager)
-        await dependenciesInstall(app_mode, app_package_manager)
+        //await dependenciesInstall(app_mode, app_package_manager)
 
         let sourceDir = app_mode === "typescript" ? "./src.ts" : "./src.js"
         let destinationDir = "./app"
@@ -143,6 +153,10 @@ exports.setup = async ({ app_path, app_mode, app_orm, app_db, app_package_manage
         await fs.cpSync(sourceDir, destinationDir, {
             recursive: true
         })
+
+        if (app_orm !== "none") {
+            await dbInstall(app_orm, app_db, app_package_manager)
+        }
 
         let direToRemove = [
             ".git",
@@ -186,12 +200,6 @@ exports.setup = async ({ app_path, app_mode, app_orm, app_db, app_package_manage
         await runCmd("git init")
         await runCmd("npx husky-init")
         await runCmd(app_package_manager + " install")
-
-
-        if (app_orm !== "none") {
-            await dbInstall(app_orm, app_db, app_package_manager)
-        }
-
     } catch (error) {
         console.log(error)
 
