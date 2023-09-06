@@ -1,7 +1,7 @@
 {
     "main": "src.js/server.js",
     "scripts": {
-        "start": "nodemon src.js/server.js",
+        "start": "nodemon",
         "test": "jest",
         "prepare": "husky install"
     },
