@@ -7,7 +7,7 @@ const path = require("path")
 const inquirer = require("inquirer")
 const { checkDirExist } = require("./methods")
 const { setup } = require("./setup")
-const packageJson = require("../package.json")
+const packageJson = require("../src.ts/package.json")
 
 const loading = require("loading-cli")
 
