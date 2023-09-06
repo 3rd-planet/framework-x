@@ -51,5 +51,10 @@
         "start": "nodemon src.js/server.js",
         "test": "jest",
         "prepare": "husky install"
+    },
+    "jest": {
+        "testMatch": [
+            "**/src.js/**/*.test.js"
+        ]
     }
 }

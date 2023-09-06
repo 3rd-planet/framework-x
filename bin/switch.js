@@ -2,6 +2,11 @@ const fs = require("fs")
 const packageJsonfile = require("../package.json")
 const { runCmd } = require("./methods")
 
+/**
+ * Switches between JS and TS mode for development.
+ * @param argvs
+ * @returns {Promise<void>}
+ */
 const switchMode = async (argvs) => {
     if (argvs.length < 3) {
         console.log("Please specify mode (js, ts)")

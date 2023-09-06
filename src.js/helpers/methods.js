@@ -90,7 +90,7 @@ exports.validate = (validations) => {
  * @param app
  */
 exports.loadRoutes = (app) => {
-    const routesFiles = require("fs").readdirSync("./routes")
+    const routesFiles = require("fs").readdirSync(__dirname + "/../routes")
     routesFiles.forEach((file) => {
         const route = require(`../routes/${file}`)
         let routeName = file.split(".")[0]

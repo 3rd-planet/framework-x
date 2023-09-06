@@ -6,6 +6,11 @@
         "prepare": "husky install",
         "build": "npx tsc"
     },
+    "jest": {
+        "testMatch": [
+            "**/src.ts/**/*.test.js"
+        ]
+    },
     "devDependencies": {
         "@types/supertest": "^2.0.12",
         "@types/cors": "^2.8.14",
