@@ -1,0 +1,4 @@
+2023-09-06 11:25:04 INFO  {"reqObject":{"method":"GET","path":"/","param":{},"body":{}},"resObject":{"statusCode":200}} 
+2023-09-06 11:25:04 INFO  {"reqObject":{"method":"GET","path":"/favicon.ico","param":{},"body":{}},"resObject":{"statusCode":200}} 
+2023-09-06 11:25:06 INFO  {"reqObject":{"method":"GET","path":"/","param":{},"body":{}},"resObject":{"statusCode":200}} 
+2023-09-06 11:25:06 INFO  {"reqObject":{"method":"GET","path":"/favicon.ico","param":{},"body":{}},"resObject":{"statusCode":200}} 

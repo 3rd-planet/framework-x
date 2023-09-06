@@ -45,5 +45,11 @@
         "semi": false,
         "singleQuote": false,
         "printWidth": 112
+    },
+    "main": "src.js/server.js",
+    "scripts": {
+        "start": "nodemon src.js/server.js",
+        "test": "jest",
+        "prepare": "husky install"
     }
 }
