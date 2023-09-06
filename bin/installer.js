@@ -7,9 +7,9 @@ const path = require("path")
 const inquirer = require("inquirer")
 const { checkDirExist } = require("./methods")
 const { setup } = require("./setup")
-const packageJson = require("../src.ts/package.json")
-
+const packageJson = require("../package.json")
 const loading = require("loading-cli")
+const chalk = require("chalk")
 
 const ownPath = process.cwd()
 
@@ -26,44 +26,83 @@ const questions = [
         }
     },
     {
-        type: "confirm",
-        name: "db_support",
-        message: "Enable Database Support",
-        default() {
-            return false
+        type: "list",
+        name: "app_mode",
+        message: "Application mode?",
+        choices: ["typescript", "javascript"],
+        filter(val) {
+            return val.toLowerCase()
         }
     },
     {
         type: "list",
-        name: "db_support_options",
+        name: "app_orm",
+        message: "ORM support?",
+        choices: ["sequelize", "mongoose", "none"],
+        filter(val) {
+            return val.toLowerCase()
+        }
+    },
+    {
+        type: "list",
+        name: "app_db",
         message: "Database support for?",
-        choices: ["mongodb", "mysql", "sqlite"],
+        choices: ["mysql", "sqlite", "postgres", "mariadb", "tedious", "oracledb"],
         filter(val) {
             return val.toLowerCase()
         },
         when(answers) {
-            return answers.db_support
+            return answers.app_orm === "sequelize"
+        }
+    },
+    {
+        type: "list",
+        name: "app_db",
+        message: "Database support for?",
+        choices: ["mongodb"],
+        filter(val) {
+            return val.toLowerCase()
+        },
+        when(answers) {
+            return answers.app_orm === "mongoose"
+        }
+    },
+    {
+        type: "confirm",
+        name: "docker_support",
+        message: "Docker support?",
+        default: false
+    },
+    {
+        type: "list",
+        name: "app_package_manager",
+        message: "Package Manager?",
+        choices: ["pnpm", "npm", "yarn"],
+        filter(val) {
+            return val.toLowerCase()
         }
     }
 ]
 
 inquirer.prompt(questions).then(async (answers) => {
-    const load = loading("Installing awesome framework, framework-x ...").start()
+    const load = loading("Installing awesome Framework, Framework X ...").start()
 
-    answers.clone_command = "git clone -b v" + version + " " + repoUrl + " " + answers.app_name
+    // git clone --single-branch --branch v4.2.0 https://github.com/3rd-planet/framework-x.git
+    // "git clone -b v" + version + " " + repoUrl + " " + answers.app_name
+    answers.clone_command = "git clone --single-branch --branch v4.2.0 https://github.com/3rd-planet/framework-x.git " + answers.app_name
     answers.app_path = path.join(ownPath, answers.app_name)
     await checkDirExist(answers.app_path)
     await setup(answers)
 
     load.stop()
 
-    console.log("\x1b[34m", "Get started...")
-    console.log(`    cd ${answers.app_name}`)
-    console.log("    npm start", "\x1b[0m")
+    console.log(chalk.blue("Get started..."))
+    console.log(chalk.blue(`    cd ${answers.app_name}`))
+    console.log(chalk.blue("    npm start"))
     console.log()
     console.log(
-        "\x1b[32m",
-        "Check documentation (https://www.frameworkx.info/) for more information",
-        "\x1b[0m"
+        chalk.green(
+            "Check documentation (https://www.frameworkx.info/) for more information"
+        )
     )
 })

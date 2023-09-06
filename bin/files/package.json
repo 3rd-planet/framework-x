@@ -2,13 +2,9 @@
     "name": "my-app",
     "version": "0.0.1",
     "description": "some cool description of my awesome app",
-    "main": "app/server.ts",
+    "xconfig": {},
     "scripts": {
-        "start": "nodemon app/server.ts",
-        "test": "jest",
-        "prepare": "husky install"
-    },
-    "xconfig": {
-        "mode": "typescript"
+        "start": "nodemon",
+        "test": "jest"
     }
 }

@@ -1,7 +1,7 @@
 {
     "main": "src.ts/server.ts",
     "scripts": {
-        "start": "nodemon src.ts/server.ts",
+        "start": "nodemon",
         "test": "jest",
         "prepare": "husky install",
         "build": "npx tsc"
