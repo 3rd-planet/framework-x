@@ -87,11 +87,7 @@ const questions = [
 inquirer.prompt(questions).then(async (answers) => {
     const load = loading("Installing awesome Framework, Framework X ...").start()
 
-    // git clone --single-branch --branch v4.2.0 https://github.com/3rd-planet/framework-x.git
-    // "git clone -b v" + version + " " + repoUrl + " " + answers.app_name
-    answers.clone_command =
-        "git clone --single-branch --branch installer https://github.com/3rd-planet/framework-x.git " +
-        answers.app_name
+    answers.clone_command = "git clone -b v" + version + " " + repoUrl + " " + answers.app_name
     answers.app_path = path.join(ownPath, answers.app_name)
     await checkDirExist(answers.app_path)
     await setup(answers)
