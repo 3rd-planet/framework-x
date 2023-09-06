@@ -1,11 +1,10 @@
 {
     "name": "my-app",
     "version": "0.0.1",
-    "description": "",
-    "main": "server.js",
+    "description": "some cool description of my awesome app",
+    "xconfig": {},
     "scripts": {
-        "test": "jest",
-        "start": "nodemon server.js",
-        "prepare": "husky install"
+        "start": "nodemon",
+        "test": "jest"
     }
 }

@@ -26,78 +26,217 @@ const devDependencies = ["jest", "nodemon", "supertest", "husky"]
 
 /**
  *
+ * @type {string[]}
+ */
+const tsDevDependencies = [
+    "@types/jest",
+    "@types/supertest",
+    "@types/cors",
+    "@types/express",
+    "ts-jest",
+    "typescript",
+    "ts-node",
+    "ts-node-dev",
+    "@types/node"
+]
+
+/**
+ *
  * @returns {Promise<void>}
  */
-const dependenciesInstall = async () => {
+const dependenciesInstall = async (app_mode, app_package_manager) => {
     for (const dependency of dependencies) {
-        await runCmd("npm install --save " + dependency)
+        await runCmd(app_package_manager + " install --save " + dependency)
     }
 
     for (const dependency of devDependencies) {
-        await runCmd("npm install --save-dev " + dependency)
+        await runCmd(app_package_manager + " install --save-dev " + dependency)
+    }
+
+    if (app_mode === "typescript") {
+        for (const dependency of tsDevDependencies) {
+            await runCmd(app_package_manager + " install --save-dev " + dependency)
+        }
     }
 }
 
 /**
  *
- * @param db_support_options
+ * @param app_orm
+ * @param app_db
+ * @param app_package_manager
  * @returns {Promise<void>}
  */
-const dbInstall = async (db_support_options) => {
-    await runCmd("npm install --save sequelize")
-    await runCmd("npx sequelize-cli init --force")
+const dbInstall = async (app_orm, app_db, app_package_manager) => {
+    let appPath = path.join(process.cwd())
 
-    if (["mysql", "sqlite"].includes(db_support_options)) {
-        if (db_support_options === "mysql") {
-            await runCmd("npm install --save mysql2")
+    if (app_orm === "mongoose") {
+        await runCmd(app_package_manager + " install --save mongoose")
+
+        if (!fs.existsSync(appPath + "/config")) {
+            await fs.mkdirSync(appPath + "/config")
         }
 
-        if (db_support_options === "sqlite") {
-            await runCmd("npm install --save sqlite3")
-            await fs.copyFileSync("./bin/files/sqlite.config.json", "./config/config.json")
-        }
+        fs.copyFileSync(appPath + "/bin/files/mongodb.connection.js", appPath + "/config/db.connection.js")
 
         return
     }
 
-    if (db_support_options === "mongodb") {
-        await runCmd("npm install --save mongoose")
-        await fs.copyFileSync("./bin/files/mongodb.connection.js", "./config/db.connection.js")
+    if (app_orm === "sequelize") {
+        await runCmd(app_package_manager + " install --save sequelize")
+
+        fs.copyFileSync(appPath + "/bin/files/.sequelizerc", appPath + "/.sequelizerc")
+
+        if (app_db === "mysql") {
+            await runCmd(app_package_manager + " install --save mysql2")
+            await runCmd("npx sequelize-cli init --force")
+
+            return
+        }
+
+        if (app_db === "sqlite") {
+            await runCmd(app_package_manager + " install --save sqlite3")
+            await runCmd("npx sequelize-cli init --force")
+            await fs.copyFileSync("./bin/files/sqlite.config.json", "./db.config.json")
+
+            return
+        }
+
+        if (app_db === "postgres") {
+            await runCmd(app_package_manager + " install --save pg pg-hstore")
+
+            return
+        }
+
+        if (app_db === "mariadb") {
+            await runCmd(app_package_manager + " install --save mariadb")
+
+            return
+        }
+
+        if (app_db === "tedious") {
+            await runCmd(app_package_manager + " install --save tedious")
+
+            return
+        }
+
+        if (app_db === "oracledb") {
+            await runCmd(app_package_manager + " install --save oracledb")
+        }
     }
 }
 
-exports.setup = async ({ app_path, db_support, db_support_options, clone_command }) => {
+/**
+ *
+ * @param app_mode
+ * @param app_orm
+ * @param app_db
+ * @param app_package_manager
+ * @returns {Promise<void>}
+ */
+const updatePackageJson = async (app_mode, app_orm, app_db, app_package_manager) => {
+    let fileExtension = app_mode === "typescript" ? "ts" : "js"
+    let packageJson = JSON.parse(fs.readFileSync("./package.json", "utf8"))
+    packageJson.xconfig = {
+        mode: app_mode,
+        orm: app_orm,
+        db: app_db,
+        package_manager: app_package_manager
+    }
+
+    packageJson.main = "app/server." + fileExtension
+
+    if (fileExtension === "ts") {
+        packageJson.jest = {
+            preset: "ts-jest",
+            testEnvironment: "node"
+        }
+
+        packageJson.scripts = {
+            ...packageJson.scripts,
+            build: "npx tsc"
+        }
+    }
+
+    fs.writeFileSync("./package.json", JSON.stringify(packageJson, null, 4))
+}
+
+/**
+ * Set up the application
+ * @param app_path
+ * @param app_mode
+ * @param app_orm
+ * @param app_db
+ * @param app_package_manager
+ * @param clone_command
+ * @param docker_support
+ * @returns {Promise<void>}
+ */
+exports.setup = async ({
+    app_path,
+    app_mode,
+    app_orm,
+    app_db,
+    app_package_manager,
+    clone_command,
+    docker_support
+}) => {
     try {
         await runCmd(clone_command)
         process.chdir(app_path)
         await fs.copyFileSync("./.env.example", ".env")
         await fs.copyFileSync("./bin/files/package.json", "./package.json")
 
-        await dependenciesInstall()
+        await updatePackageJson(app_mode, app_orm, app_db, app_package_manager)
+        await dependenciesInstall(app_mode, app_package_manager)
 
-        if (db_support && typeof db_support_options !== "undefined") {
-            await dbInstall(db_support_options)
+        let sourceDir = app_mode === "typescript" ? "./src.ts" : "./src.js"
+        let destinationDir = "./app"
+
+        await fs.cpSync(sourceDir, destinationDir, {
+            recursive: true
+        })
+
+        if (app_orm !== "none") {
+            await dbInstall(app_orm, app_db, app_package_manager)
         }
 
-        await fs.rmSync(path.join(app_path, ".git"), {
-            recursive: true
-        })
-        await fs.rmSync(path.join(app_path, "bin"), {
-            recursive: true
-        })
+        let dirToRemove = [".git", ".github", "bin", "src.js", "src.ts"]
+
+        let filesToRemove = [
+            "README.md",
+            "CODE_OF_CONDUCT.md",
+            "CONTRIBUTING.md",
+            "SECURITY.md",
+            "LICENSE",
+            "app/package.json"
+        ]
+
+        if (app_mode !== "typescript") {
+            filesToRemove.push("tsconfig.json")
+        }
+
+        if (!docker_support) {
+            filesToRemove.push(".dockerignore")
+            filesToRemove.push("Dockerfile")
+        }
+
+        for (const dir of dirToRemove) {
+            await fs.rmSync(path.join(app_path, dir), {
+                recursive: true
+            })
+        }
+
+        for (const file of filesToRemove) {
+            await fs.unlinkSync(path.join(app_path, file))
+        }
 
         /**
          * introducing Husky to the system...
          */
         await runCmd("git init")
         await runCmd("npx husky-init")
-        await runCmd("npm install")
-
-        await fs.unlinkSync("README.md")
-        await fs.unlinkSync("./CODE_OF_CONDUCT.md")
-        await fs.unlinkSync("./CONTRIBUTING.md")
-        await fs.unlinkSync("./SECURITY.md")
-        await fs.unlinkSync("LICENSE")
+        await runCmd(app_package_manager + " install")
     } catch (error) {
         console.log(error)
 

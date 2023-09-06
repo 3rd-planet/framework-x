@@ -1,22 +1,17 @@
-require("dotenv").config()
-require("express-async-errors")
-const { loadRoutes } = require("./helpers/methods")
+import dotenv from "dotenv"
+import "express-async-errors"
+import express, { Application } from "express"
+import cors from "cors"
+import { loadRoutes } from "./helpers/methods"
 
-const accessLogMiddleware = require("./middlewares/logger.middleware")
+import accessLogMiddleware from "./middlewares/logger.middleware"
 
-const express = require("express")
-
-/**
- *
- * @type {Express}
- */
-const app = express()
+dotenv.config()
 
 /**
- *
- * @type {(function(*): function(*, *, *): void)|{}}
+ * @type {Application}
  */
-const cors = require("cors")
+const app: Application = express()
 
 /**
  * Enable cors for all routes and origins. You can change this to only allow specific origins.
@@ -42,8 +37,4 @@ app.use(accessLogMiddleware)
  */
 loadRoutes(app)
 
-/**
- * Export the express app.
- * @type {Express}
- */
-module.exports = app
+export default app

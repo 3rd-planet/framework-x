@@ -1,0 +1,13 @@
+{
+    "main": "src.js/server.js",
+    "scripts": {
+        "start": "nodemon",
+        "test": "jest",
+        "prepare": "husky install"
+    },
+    "jest": {
+        "testMatch": [
+            "**/src.js/**/*.test.js"
+        ]
+    }
+}
