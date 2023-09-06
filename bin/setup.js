@@ -2,7 +2,6 @@ const { runCmd } = require("./methods")
 const fs = require("fs")
 const path = require("path")
 
-
 /**
  *
  * @type {string[]}
@@ -25,7 +24,21 @@ const dependencies = [
  */
 const devDependencies = ["jest", "nodemon", "supertest", "husky"]
 
-const tsDevDependencies = ["@types/jest", "@types/supertest", "@types/cors", "@types/express", "ts-jest", "typescript", "ts-node", "ts-node-dev", "@types/node"]
+/**
+ *
+ * @type {string[]}
+ */
+const tsDevDependencies = [
+    "@types/jest",
+    "@types/supertest",
+    "@types/cors",
+    "@types/express",
+    "ts-jest",
+    "typescript",
+    "ts-node",
+    "ts-node-dev",
+    "@types/node"
+]
 
 /**
  *
@@ -47,13 +60,14 @@ const dependenciesInstall = async (app_mode, app_package_manager) => {
     }
 }
 
-
-const dbInstall = async (
-    app_orm,
-    app_db,
-    app_package_manager
-) => {
-
+/**
+ *
+ * @param app_orm
+ * @param app_db
+ * @param app_package_manager
+ * @returns {Promise<void>}
+ */
+const dbInstall = async (app_orm, app_db, app_package_manager) => {
     let appPath = path.join(process.cwd())
 
     if (app_orm === "mongoose") {
@@ -76,6 +90,7 @@ const dbInstall = async (
         if (app_db === "mysql") {
             await runCmd(app_package_manager + " install --save mysql2")
             await runCmd("npx sequelize-cli init --force")
+
             return
         }
 
@@ -83,21 +98,25 @@ const dbInstall = async (
             await runCmd(app_package_manager + " install --save sqlite3")
             await runCmd("npx sequelize-cli init --force")
             await fs.copyFileSync("./bin/files/sqlite.config.json", "./db.config.json")
+
             return
         }
 
         if (app_db === "postgres") {
             await runCmd(app_package_manager + " install --save pg pg-hstore")
+
             return
         }
 
         if (app_db === "mariadb") {
             await runCmd(app_package_manager + " install --save mariadb")
+
             return
         }
 
         if (app_db === "tedious") {
             await runCmd(app_package_manager + " install --save tedious")
+
             return
         }
 
@@ -107,12 +126,15 @@ const dbInstall = async (
     }
 }
 
-const updatePackageJson = async (
-    app_mode,
-    app_orm,
-    app_db,
-    app_package_manager
-) => {
+/**
+ *
+ * @param app_mode
+ * @param app_orm
+ * @param app_db
+ * @param app_package_manager
+ * @returns {Promise<void>}
+ */
+const updatePackageJson = async (app_mode, app_orm, app_db, app_package_manager) => {
     let fileExtension = app_mode === "typescript" ? "ts" : "js"
     let packageJson = JSON.parse(fs.readFileSync("./package.json", "utf8"))
     packageJson.xconfig = {
@@ -126,20 +148,39 @@ const updatePackageJson = async (
 
     if (fileExtension === "ts") {
         packageJson.jest = {
-            "preset": "ts-jest",
-            "testEnvironment": "node"
+            preset: "ts-jest",
+            testEnvironment: "node"
         }
 
         packageJson.scripts = {
             ...packageJson.scripts,
-            "build": "npx tsc"
+            build: "npx tsc"
         }
     }
 
     fs.writeFileSync("./package.json", JSON.stringify(packageJson, null, 4))
 }
 
-exports.setup = async ({ app_path, app_mode, app_orm, app_db, app_package_manager, clone_command, docker_support }) => {
+/**
+ * Set up the application
+ * @param app_path
+ * @param app_mode
+ * @param app_orm
+ * @param app_db
+ * @param app_package_manager
+ * @param clone_command
+ * @param docker_support
+ * @returns {Promise<void>}
+ */
+exports.setup = async ({
+    app_path,
+    app_mode,
+    app_orm,
+    app_db,
+    app_package_manager,
+    clone_command,
+    docker_support
+}) => {
     try {
         await runCmd(clone_command)
         process.chdir(app_path)
@@ -160,13 +201,7 @@ exports.setup = async ({ app_path, app_mode, app_orm, app_db, app_package_manage
             await dbInstall(app_orm, app_db, app_package_manager)
         }
 
-        let direToRemove = [
-            ".git",
-            ".github",
-            "bin",
-            "src.js",
-            "src.ts"
-        ]
+        let dirToRemove = [".git", ".github", "bin", "src.js", "src.ts"]
 
         let filesToRemove = [
             "README.md",
@@ -186,7 +221,7 @@ exports.setup = async ({ app_path, app_mode, app_orm, app_db, app_package_manage
             filesToRemove.push("Dockerfile")
         }
 
-        for (const dir of direToRemove) {
+        for (const dir of dirToRemove) {
             await fs.rmSync(path.join(app_path, dir), {
                 recursive: true
             })
