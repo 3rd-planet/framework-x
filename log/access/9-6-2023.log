@@ -36,3 +36,6 @@
 2023-09-06 12:17:09 INFO  {"reqObject":{"method":"POST","path":"/","param":{},"body":{"key":"value"}},"resObject":{"statusCode":200}} 
 2023-09-06 12:17:09 INFO  {"reqObject":{"method":"POST","path":"/","param":{},"body":{"ky":"value"}},"resObject":{"statusCode":200}} 
 2023-09-06 12:17:09 INFO  {"reqObject":{"method":"GET","path":"/","param":{},"body":{}},"resObject":{"statusCode":200}} 
+2023-09-06 12:19:20 INFO  {"reqObject":{"method":"POST","path":"/","param":{},"body":{"key":"value"}},"resObject":{"statusCode":200}} 
+2023-09-06 12:19:20 INFO  {"reqObject":{"method":"POST","path":"/","param":{},"body":{"ky":"value"}},"resObject":{"statusCode":200}} 
+2023-09-06 12:19:20 INFO  {"reqObject":{"method":"GET","path":"/","param":{},"body":{}},"resObject":{"statusCode":200}} 
