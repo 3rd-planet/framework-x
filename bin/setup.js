@@ -147,7 +147,7 @@ exports.setup = async ({ app_path, app_mode, app_orm, app_db, app_package_manage
         await fs.copyFileSync("./bin/files/package.json", "./package.json")
 
         await updatePackageJson(app_mode, app_orm, app_db, app_package_manager)
-        //await dependenciesInstall(app_mode, app_package_manager)
+        await dependenciesInstall(app_mode, app_package_manager)
 
         let sourceDir = app_mode === "typescript" ? "./src.ts" : "./src.js"
         let destinationDir = "./app"
