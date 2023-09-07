@@ -17,7 +17,12 @@
     <img width="35%" src="https://github.com/3rd-planet/framework-x/assets/29948727/8e60ecf3-9490-427b-a0ae-b57556c311d0">
 </p>
 
-This package provides you, basic setup for api creation in node, using Express.js
+> Your Accelerated Path to API Creation
+
+<p align="center" width="100%">
+    <img width="100%" src="https://github.com/3rd-planet/framework-x/assets/29948727/136c1fb4-1806-4eee-9543-26b2b0c447f7">
+</p>
+
 
 ## Installation
 
