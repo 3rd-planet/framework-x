@@ -1,6 +1,6 @@
 {
     "name": "@3rdplanet/framework-x",
-    "version": "4.2.3",
+    "version": "4.2.4",
     "description": "basic setup for node api, using express js",
     "repository": {
         "type": "git",
