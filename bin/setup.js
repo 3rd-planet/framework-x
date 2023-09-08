@@ -154,7 +154,8 @@ const updatePackageJson = async (app_mode, app_orm, app_db, app_package_manager)
 
         packageJson.scripts = {
             ...packageJson.scripts,
-            build: "npx tsc"
+            build: "npx tsc",
+            clean: "rm -rf dist && echo 'Done.'",
         }
     }
 

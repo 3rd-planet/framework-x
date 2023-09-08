@@ -77,7 +77,7 @@ const questions = [
         type: "list",
         name: "app_package_manager",
         message: "Package Manager?",
-        choices: ["pnpm", "npm", "yarn"],
+        choices: ["pnpm", "npm", "yarn", "bun"],
         filter(val) {
             return val.toLowerCase()
         }
