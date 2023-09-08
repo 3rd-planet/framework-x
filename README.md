@@ -20,9 +20,8 @@
 > Your Accelerated Path to API Creation
 
 <p align="center" width="100%">
-    <img width="100%" src="https://github.com/3rd-planet/framework-x/assets/29948727/136c1fb4-1806-4eee-9543-26b2b0c447f7">
+    <img width="100%" src="https://github.com/3rd-planet/framework-x/assets/29948727/8b451da2-3bc9-4ca3-81c6-a2f50b38b334">
 </p>
-
 
 ## Installation
 
