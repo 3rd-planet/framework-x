@@ -3,7 +3,7 @@
 "use strict"
 
 const path = require("path")
-
+const figlet = require("figlet")
 const inquirer = require("inquirer")
 const { checkDirExist } = require("./methods")
 const { setup } = require("./setup")
@@ -83,6 +83,16 @@ const questions = [
         }
     }
 ]
+
+
+console.log(
+    chalk.green(
+        figlet.textSync("Framework X", {
+            horizontalLayout: "default",
+            verticalLayout: "default"
+        })
+    )
+)
 
 inquirer.prompt(questions).then(async (answers) => {
     const load = loading("Installing awesome Framework, Framework X ...").start()
