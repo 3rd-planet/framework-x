@@ -84,7 +84,6 @@ const questions = [
     }
 ]
 
-
 console.log(
     chalk.green(
         figlet.textSync("Framework X", {

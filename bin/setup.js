@@ -155,7 +155,7 @@ const updatePackageJson = async (app_mode, app_orm, app_db, app_package_manager)
         packageJson.scripts = {
             ...packageJson.scripts,
             build: "npx tsc",
-            clean: "rm -rf dist && echo 'Done.'",
+            clean: "rm -rf dist && echo 'Done.'"
         }
     }
 
@@ -174,14 +174,14 @@ const updatePackageJson = async (app_mode, app_orm, app_db, app_package_manager)
  * @returns {Promise<void>}
  */
 exports.setup = async ({
-    app_path,
-    app_mode,
-    app_orm,
-    app_db,
-    app_package_manager,
-    clone_command,
-    docker_support
-}) => {
+                           app_path,
+                           app_mode,
+                           app_orm,
+                           app_db,
+                           app_package_manager,
+                           clone_command,
+                           docker_support
+                       }) => {
     try {
         await runCmd(clone_command)
         process.chdir(app_path)

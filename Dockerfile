@@ -1,7 +1,7 @@
 FROM node:18.16
 WORKDIR /app
 COPY package*.json ./
-RUN npm i
+RUN pnpm i
 COPY . .
 EXPOSE 5000
 CMD [ "npm", "start" ]

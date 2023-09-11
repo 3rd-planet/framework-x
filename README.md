@@ -37,28 +37,26 @@ npm start
 
 Framework X comprises a number of features that are designed to make it easy to build and maintain complex web applications. These features include:
 
-- An **MVC based architecture** for building scalable applications
-- A **routing solution** that lets you build single-page applications with ease
-- **Inbuilt testing Architecture** that lets you test your application's code with ease
-- **TypeScript support** out of the box
-- A **CLI** that lets you create, build, test, and run your application with ease
-- **ORM support** (sequelize, mongoose) out of the box
-- **Multiple Package Manager support** (npm, yarn, pnpm, bun) out of the box
-- **Inbuilt support for multiple databases** via ORM
-- **Inbuilt support for multiple templating engines** (ejs, pug, handlebars, mustache, nunjucks, twig, vash, and more) via Express
-- **Docker support** out of the box
-- **Inbuilt Repository Pattern** for building scalable applications
-- **Logging support** out of the box using Simple Node Logger
+-   An **MVC based architecture** for building scalable applications
+-   A **routing solution** that lets you build single-page applications with ease
+-   **Inbuilt testing Architecture** that lets you test your application's code with ease
+-   **TypeScript support** out of the box
+-   A **CLI** that lets you create, build, test, and run your application with ease
+-   **ORM support** (sequelize, mongoose) out of the box
+-   **Multiple Package Manager support** (npm, yarn, pnpm, bun) out of the box
+-   **Inbuilt support for multiple databases** via ORM
+-   **Inbuilt support for multiple templating engines** (ejs, pug, handlebars, mustache, nunjucks, twig, vash, and more) via Express
+-   **Docker support** out of the box
+-   **Inbuilt Repository Pattern** for building scalable applications
+-   **Logging support** out of the box using Simple Node Logger
 
 ## Features in the pipeline
 
-- **Authentication Module** - We're working on a new authentication module that will allow you to create and manage users. This will be a great addition to the framework, and will be available as a separate package.
-- **Role and Permissions Module** - We're also working on role and permissions module that will allow you to create and manage roles and permissions as per the needs of your application. This will be available as a separate package.
-- **Social Login** - We're working on a social login module that will allow you to integrate social login into your application. This will be available as a separate package.
-- **Notification Module** - We're working on a notification module that will allow you to create and manage notification.Notification email, sms, push, in-app, etc. This will be available as a separate package.
-- **UI Layer** - We're working on a new UI for the framework. Which will be available with the Authentication Module. You will be able to choose form a number of platforms like React, Vue, Angular, etc.
-
-
+-   **Authentication Module** - We're working on a new authentication module that will allow you to create and manage users. This will be a great addition to the framework, and will be available as a separate package.
+-   **Role and Permissions Module** - We're also working on role and permissions module that will allow you to create and manage roles and permissions as per the needs of your application. This will be available as a separate package.
+-   **Social Login** - We're working on a social login module that will allow you to integrate social login into your application. This will be available as a separate package.
+-   **Notification Module** - We're working on a notification module that will allow you to create and manage notification.Notification email, sms, push, in-app, etc. This will be available as a separate package.
+-   **UI Layer** - We're working on a new UI for the framework. Which will be available with the Authentication Module. You will be able to choose form a number of platforms like React, Vue, Angular, etc.
 
 ## Documentation
 
