@@ -15,6 +15,7 @@ const dependencies = [
     "express-validator",
     "simple-node-logger",
     "loading-cli",
+    "redis",
     "@3rdplanet/x-core"
 ]
 

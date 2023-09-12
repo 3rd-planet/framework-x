@@ -1,7 +1,7 @@
 {
     "name": "@3rdplanet/framework-x",
-    "version": "4.2.4",
-    "description": "basic setup for node api, using express js",
+    "version": "4.3.0",
+    "description": "Your Accelerated Path to API Creation",
     "repository": {
         "type": "git",
         "url": "https://github.com/3rd-planet/framework-x.git"
