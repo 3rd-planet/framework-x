@@ -93,6 +93,7 @@ const dbInstall = async (app_orm, app_db, app_package_manager) => {
         if (app_db === "mysql") {
             await runCmd(app_package_manager + " install --save mysql2")
             await runCmd("npx sequelize-cli init --force")
+            await fs.copyFileSync("./bin/files/mysql.config.js", "./db.config.js")
 
             return
         }
@@ -100,7 +101,7 @@ const dbInstall = async (app_orm, app_db, app_package_manager) => {
         if (app_db === "sqlite") {
             await runCmd(app_package_manager + " install --save sqlite3")
             await runCmd("npx sequelize-cli init --force")
-            await fs.copyFileSync("./bin/files/sqlite.config.json", "./db.config.json")
+            await fs.copyFileSync("./bin/files/sqlite.config.js", "./db.config.js")
 
             return
         }
