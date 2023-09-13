@@ -1,10 +1,10 @@
-GET http://127.0.0.1:5000
+GET http://{{host}}:{{port}}
 
 ###
 
-POST http://127.0.0.1:5000
+POST http://{{host}}:{{port}}
 Content-Type: application/json
 
 {
-  "key": "value"
+    "key": "value"
 }
