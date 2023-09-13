@@ -16,6 +16,8 @@ const dependencies = [
     "simple-node-logger",
     "loading-cli",
     "redis",
+    "nodemailer",
+    "mjml",
     "@3rdplanet/x-core"
 ]
 

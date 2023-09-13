@@ -49,6 +49,9 @@ Framework X comprises a number of features that are designed to make it easy to 
 -   **Docker support** out of the box
 -   **Inbuilt Repository Pattern** for building scalable applications
 -   **Logging support** out of the box using Simple Node Logger
+-   **Inbuilt support for Super Charged Cache** With Redis. See [Cache documentation](https://www.frameworkx.info/docs/overview/cache) for more details
+-   **Inbuilt support for Nodemailer with MJML** for sending emails. See [Mailer documentation](https://www.frameworkx.info/docs/overview/mail) for more details
+
 
 ## Features in the pipeline
 
