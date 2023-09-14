@@ -1,4 +1,4 @@
-const dotenv = (require("dotenv").config()).parsed
+const dotenv = require("dotenv").config().parsed
 
 let config = {
     username: dotenv.DB_USERNAME,

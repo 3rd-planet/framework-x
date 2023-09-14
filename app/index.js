@@ -1,6 +1,6 @@
 require("dotenv").config()
 require("express-async-errors")
-const { loadRoutes } = require("./helpers/methods")
+const { loadRoutes } = require("@3rdplanet/x-core/helpers/methods")
 
 const accessLogMiddleware = require("./middlewares/logger.middleware")
 
@@ -13,7 +13,8 @@ const express = require("express")
 const app = express()
 
 /**
- * @type {(<T=e.CorsRequest extends e.CorsRequest>(options?: (e.CorsOptions | e.CorsOptionsDelegate<T>)) => (req: T, res: {statusCode?: number | undefined, setHeader(key: string, value: string): any, end(): any}, next: (err?: any) => any) => void) | e}
+ * Enable cors for all routes and origins. You can change this to only allow specific origins.
+ * @type {(function(*): function(*, *, *): void)|{}}
  */
 const cors = require("cors")
 
@@ -32,12 +33,12 @@ app.use(cors())
 app.use(express.json())
 
 /**
- * enabling logging for all routes in console.
+ * enabling logging for all routes in the console.
  */
 app.use(accessLogMiddleware)
 
 /**
- * Load all routes from routes folder.
+ * Load all routes from the routes folder and modules.
  */
 loadRoutes(app)
 

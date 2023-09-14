@@ -7,6 +7,7 @@ const path = require("path")
  * @type {string[]}
  */
 const dependencies = [
+    "app-root-path",
     "commander",
     "cors",
     "dotenv",
@@ -120,7 +121,8 @@ const updatePackageJson = async (app_orm, app_db, app_package_manager) => {
     packageJson.xconfig = {
         orm: app_orm,
         db: app_db,
-        package_manager: app_package_manager
+        package_manager: app_package_manager,
+        modules: []
     }
 
     fs.writeFileSync("./package.json", JSON.stringify(packageJson, null, 4))
@@ -137,14 +139,7 @@ const updatePackageJson = async (app_orm, app_db, app_package_manager) => {
  * @param docker_support
  * @returns {Promise<void>}
  */
-exports.setup = async ({
-                           app_path,
-                           app_orm,
-                           app_db,
-                           app_package_manager,
-                           clone_command,
-                           docker_support
-                       }) => {
+exports.setup = async ({ app_path, app_orm, app_db, app_package_manager, clone_command, docker_support }) => {
     try {
         await runCmd(clone_command)
         process.chdir(app_path)
@@ -160,13 +155,7 @@ exports.setup = async ({
 
         let dirToRemove = [".git", ".github", "bin"]
 
-        let filesToRemove = [
-            "README.md",
-            "CODE_OF_CONDUCT.md",
-            "CONTRIBUTING.md",
-            "SECURITY.md",
-            "LICENSE",
-        ]
+        let filesToRemove = ["README.md", "CODE_OF_CONDUCT.md", "CONTRIBUTING.md", "SECURITY.md", "LICENSE"]
 
         if (!docker_support) {
             filesToRemove.push(".dockerignore")
