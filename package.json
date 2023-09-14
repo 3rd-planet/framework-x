@@ -2,6 +2,12 @@
     "name": "@3rdplanet/framework-x",
     "version": "4.3.3",
     "description": "Your Accelerated Path to API Creation",
+    "main": "app/server.js",
+    "scripts": {
+        "start": "nodemon",
+        "test": "jest",
+        "prepare": "husky install"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/3rd-planet/framework-x.git"
@@ -47,16 +53,5 @@
         "semi": false,
         "singleQuote": false,
         "printWidth": 112
-    },
-    "main": "src.js/server.js",
-    "scripts": {
-        "start": "nodemon",
-        "test": "jest",
-        "prepare": "husky install"
-    },
-    "jest": {
-        "testMatch": [
-            "**/src.js/**/*.test.js"
-        ]
     }
 }
