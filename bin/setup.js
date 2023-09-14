@@ -25,41 +25,19 @@ const dependencies = [
  *
  * @type {string[]}
  */
-const devDependencies = ["jest", "nodemon", "supertest", "husky"]
-
-/**
- *
- * @type {string[]}
- */
-const tsDevDependencies = [
-    "@types/jest",
-    "@types/supertest",
-    "@types/cors",
-    "@types/express",
-    "ts-jest",
-    "typescript",
-    "ts-node",
-    "ts-node-dev",
-    "@types/node"
-]
+const devDependencies = ["jest", "nodemon", "supertest", "husky", "prettier"]
 
 /**
  *
  * @returns {Promise<void>}
  */
-const dependenciesInstall = async (app_mode, app_package_manager) => {
+const dependenciesInstall = async (app_package_manager) => {
     for (const dependency of dependencies) {
         await runCmd(app_package_manager + " install --save " + dependency)
     }
 
     for (const dependency of devDependencies) {
         await runCmd(app_package_manager + " install --save-dev " + dependency)
-    }
-
-    if (app_mode === "typescript") {
-        for (const dependency of tsDevDependencies) {
-            await runCmd(app_package_manager + " install --save-dev " + dependency)
-        }
     }
 }
 
@@ -132,35 +110,17 @@ const dbInstall = async (app_orm, app_db, app_package_manager) => {
 
 /**
  *
- * @param app_mode
  * @param app_orm
  * @param app_db
  * @param app_package_manager
  * @returns {Promise<void>}
  */
-const updatePackageJson = async (app_mode, app_orm, app_db, app_package_manager) => {
-    let fileExtension = app_mode === "typescript" ? "ts" : "js"
+const updatePackageJson = async (app_orm, app_db, app_package_manager) => {
     let packageJson = JSON.parse(fs.readFileSync("./package.json", "utf8"))
     packageJson.xconfig = {
-        mode: app_mode,
         orm: app_orm,
         db: app_db,
         package_manager: app_package_manager
-    }
-
-    packageJson.main = "app/server." + fileExtension
-
-    if (fileExtension === "ts") {
-        packageJson.jest = {
-            preset: "ts-jest",
-            testEnvironment: "node"
-        }
-
-        packageJson.scripts = {
-            ...packageJson.scripts,
-            build: "npx tsc",
-            clean: "rm -rf dist && echo 'Done.'"
-        }
     }
 
     fs.writeFileSync("./package.json", JSON.stringify(packageJson, null, 4))
@@ -179,7 +139,6 @@ const updatePackageJson = async (app_mode, app_orm, app_db, app_package_manager)
  */
 exports.setup = async ({
                            app_path,
-                           app_mode,
                            app_orm,
                            app_db,
                            app_package_manager,
@@ -192,21 +151,14 @@ exports.setup = async ({
         await fs.copyFileSync("./.env.example", ".env")
         await fs.copyFileSync("./bin/files/package.json", "./package.json")
 
-        await updatePackageJson(app_mode, app_orm, app_db, app_package_manager)
-        await dependenciesInstall(app_mode, app_package_manager)
-
-        let sourceDir = app_mode === "typescript" ? "./src.ts" : "./src.js"
-        let destinationDir = "./app"
-
-        await fs.cpSync(sourceDir, destinationDir, {
-            recursive: true
-        })
+        await updatePackageJson(app_orm, app_db, app_package_manager)
+        await dependenciesInstall(app_package_manager)
 
         if (app_orm !== "none") {
             await dbInstall(app_orm, app_db, app_package_manager)
         }
 
-        let dirToRemove = [".git", ".github", "bin", "src.js", "src.ts"]
+        let dirToRemove = [".git", ".github", "bin"]
 
         let filesToRemove = [
             "README.md",
@@ -214,12 +166,7 @@ exports.setup = async ({
             "CONTRIBUTING.md",
             "SECURITY.md",
             "LICENSE",
-            "app/package.json"
         ]
-
-        if (app_mode !== "typescript") {
-            filesToRemove.push("tsconfig.json")
-        }
 
         if (!docker_support) {
             filesToRemove.push(".dockerignore")

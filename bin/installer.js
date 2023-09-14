@@ -27,15 +27,6 @@ const questions = [
     },
     {
         type: "list",
-        name: "app_mode",
-        message: "Application mode?",
-        choices: ["typescript", "javascript"],
-        filter(val) {
-            return val.toLowerCase()
-        }
-    },
-    {
-        type: "list",
         name: "app_orm",
         message: "ORM support?",
         choices: ["sequelize", "mongoose", "none"],
