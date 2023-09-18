@@ -1,5 +1,3 @@
-const { validationResult } = require("express-validator")
-
 /**
  *
  * @param message
@@ -56,31 +54,4 @@ exports.failResponse = (message, payload = null, statusCode = 400) => {
     }
 
     return response
-}
-
-/**
- * sequential processing, stops running validations chain if the previous one have failed.
- * @param validations
- * @returns {function(*=, *=, *): Promise<*>}
- * @example
- *  const { validate } = require("../helpers/methods")
- *  const { indexValidator } = require("../middlewares/validators/index.validations")
- *  router.post("/", validate(indexValidator), IndexController.indexPost)
- */
-exports.validate = (validations) => {
-    return async (req, res, next) => {
-        for (let validation of validations) {
-            const result = await validation.run(req)
-            if (result.errors.length) break
-        }
-
-        const errors = validationResult(req)
-        if (errors.isEmpty()) {
-            return next()
-        }
-
-        res.status(parseInt(process.env.VALIDATION_FAIL_CODE)).json(
-            this.failResponse("Validation failed", errors.array())
-        )
-    }
 }
