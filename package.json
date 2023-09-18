@@ -6,7 +6,8 @@
     "scripts": {
         "start": "nodemon",
         "test": "jest",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "lint": "prettier --write ."
     },
     "repository": {
         "type": "git",
@@ -16,25 +17,15 @@
     "author": "msamgan",
     "license": "ISC",
     "dependencies": {
-        "@3rdplanet/x-core": "^1.5.0",
+        "@3rdplanet/x-core": "file:../x-core",
         "chalk": "^4.1.2",
-        "commander": "^9.5.0",
-        "cors": "^2.8.5",
-        "dotenv": "^8.6.0",
-        "express": "^4.18.2",
-        "express-async-errors": "^3.1.1",
-        "express-validator": "^6.15.0",
-        "figlet": "^1.6.0",
         "inquirer": "^8.2.6",
-        "loading-cli": "^1.1.0",
-        "simple-node-logger": "^21.8.12"
+        "mysql2": "^3.6.1",
+        "sequelize": "^6.33.0"
     },
     "devDependencies": {
-        "husky": "^7.0.4",
-        "jest": "^27.5.1",
-        "nodemon": "^2.0.22",
-        "prettier": "^3.0.3",
-        "supertest": "^6.3.3"
+        "husky": "^8.0.3",
+        "nodemon": "^3.0.1"
     },
     "keywords": [
         "api",

@@ -6,27 +6,13 @@ const path = require("path")
  *
  * @type {string[]}
  */
-const dependencies = [
-    "app-root-path",
-    "commander",
-    "cors",
-    "dotenv",
-    "express",
-    "express-async-errors",
-    "express-validator",
-    "simple-node-logger",
-    "loading-cli",
-    "redis",
-    "nodemailer",
-    "mjml",
-    "@3rdplanet/x-core"
-]
+const dependencies = ["@3rdplanet/x-core"]
 
 /**
  *
  * @type {string[]}
  */
-const devDependencies = ["jest", "nodemon", "supertest", "husky", "prettier"]
+const devDependencies = ["nodemon", "husky"]
 
 /**
  *
