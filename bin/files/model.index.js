@@ -15,28 +15,42 @@ let sequelize = config.use_env_variable
 
 let modelsFiles = fs.readdirSync(__dirname)
 
+modelsFiles = modelsFiles.map((file) => {
+    return {
+        directory: path.join(__dirname, file),
+        file: file
+    }
+})
+
 for (let i = 0; i < activeModules.length; i++) {
     let module = activeModules[i]
-    let moduleModelsDir = path.join("../../", "modules", module, "app", "models")
+    let moduleModelsDir = path.join(__dirname, "../../", "modules", module, "app", "models")
 
     if (fs.existsSync(moduleModelsDir)) {
         let moduleModelsFiles = fs.readdirSync(moduleModelsDir)
 
+        moduleModelsFiles = moduleModelsFiles.map((file) => {
+                return {
+                    directory: path.join(moduleModelsDir, file),
+                    file: file
+                }
+            }
+        )
+
         modelsFiles = modelsFiles.concat(moduleModelsFiles)
     }
 }
-
 modelsFiles
     .filter((file) => {
         return (
-            file.indexOf(".") !== 0 &&
-            file !== basename &&
-            file.slice(-3) === ".js" &&
-            file.indexOf(".test.js") === -1
+            file.file.indexOf(".") !== 0 &&
+            file.file !== basename &&
+            file.file.slice(-3) === ".js" &&
+            file.file.indexOf(".test.js") === -1
         )
     })
     .forEach((file) => {
-        const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes)
+        const model = require(file.directory)(sequelize, Sequelize.DataTypes)
         db[model.name] = model
     })
 
