@@ -7,7 +7,7 @@ const accessLogMiddleware = require("./middlewares/logger.middleware")
 const express = require("express")
 
 /**
- *
+ * Create an express app.
  * @type {Express}
  */
 const app = express()

@@ -30,12 +30,11 @@ for (let i = 0; i < activeModules.length; i++) {
         let moduleModelsFiles = fs.readdirSync(moduleModelsDir)
 
         moduleModelsFiles = moduleModelsFiles.map((file) => {
-                return {
-                    directory: path.join(moduleModelsDir, file),
-                    file: file
-                }
+            return {
+                directory: path.join(moduleModelsDir, file),
+                file: file
             }
-        )
+        })
 
         modelsFiles = modelsFiles.concat(moduleModelsFiles)
     }
