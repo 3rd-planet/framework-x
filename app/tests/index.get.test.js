@@ -1,4 +1,4 @@
-const app = require("../index")
+const app = require("@3rdplanet/x-core/app")
 const supertest = require("supertest")
 
 describe("Test the root path", () => {

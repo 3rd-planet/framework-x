@@ -1,8 +1,8 @@
-const dotenv = (require("dotenv").config()).parsed
+const dotenv = require("dotenv").config().parsed
 
 let config = {
-    "dialect": dotenv.DB_DIALECT,
-    "storage": "./" + dotenv.DB_NAME + ".sqlite3"
+    dialect: dotenv.DB_DIALECT,
+    storage: "./" + dotenv.DB_NAME + ".sqlite3"
 }
 
 module.exports = {

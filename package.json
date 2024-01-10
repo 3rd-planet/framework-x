@@ -6,7 +6,8 @@
     "scripts": {
         "start": "nodemon",
         "test": "jest",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "lint": "prettier --write ."
     },
     "repository": {
         "type": "git",
