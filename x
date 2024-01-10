@@ -1,14 +1,10 @@
 #!/usr/bin/env node
 
 const { Command } = require("commander")
-const figlet = require("figlet")
 const program = new Command()
+const { cliWatermark } = require("@3rdplanet/x-core/helpers/methods")
 
-console.log(figlet.textSync("X CLI", {
-    horizontalLayout: "default",
-    verticalLayout: "default"
-}))
-
+cliWatermark()
 
 require("@3rdplanet/x-core/cli").init(program)
 

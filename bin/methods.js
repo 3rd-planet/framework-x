@@ -4,9 +4,13 @@ const exec = util.promisify(require("child_process").exec)
 const chalk = require("chalk")
 
 /**
+ * This function executes a given command using the child_process module's exec function.
+ * It logs the error message in red color if any error occurs during the execution of the command.
  *
- * @param command
- * @returns {Promise<void>}
+ * @async
+ * @function runCmd
+ * @param {string} command - The command to be executed.
+ * @throws {Error} If any error occurs during the execution of the command.
  */
 exports.runCmd = async (command) => {
     try {
@@ -18,9 +22,15 @@ exports.runCmd = async (command) => {
 }
 
 /**
+ * This function checks if a directory exists at the given path.
+ * If the directory does not exist, it creates one.
+ * If the directory already exists, it logs an error message and terminates the process.
+ * If any other error occurs during the creation of the directory, it logs the error and terminates the process.
  *
- * @param appPath
- * @returns {Promise<void>}
+ * @async
+ * @function checkDirExist
+ * @param {string} appPath - The path where the directory is to be created.
+ * @throws {Error} If the directory already exists or any other error occurs during the creation of the directory.
  */
 exports.checkDirExist = async (appPath) => {
     try {

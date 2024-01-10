@@ -1,0 +1,24 @@
+POST http://{{host}}:{{port}}/user/register
+Content-Type: application/json
+
+{
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "someemail@mail.com",
+    "password": "Pass@123"
+}
+
+###
+
+POST http://{{host}}:{{port}}/user/login
+Content-Type: application/json
+
+{
+    "email": "someemail@mail.com",
+    "password": "Pass@123"
+}
+
+###
+GET http://{{host}}:{{port}}/user/
+Accept: application/json
+Authorization: Bearer {{token}}

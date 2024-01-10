@@ -98,11 +98,17 @@ const dbInstall = async (app_orm, app_db, app_package_manager) => {
 }
 
 /**
+ * This function updates the package.json file of the application.
+ * It reads the existing package.json file,
+ * adds a new property 'xconfig' with the provided ORM, database, package manager, and an empty modules array.
+ * Then it writes the updated JSON back to the package.json file.
  *
- * @param app_orm
- * @param app_db
- * @param app_package_manager
- * @returns {Promise<void>}
+ * @async
+ * @function updatePackageJson
+ * @param {string} app_orm - The ORM to be used by the application.
+ * @param {string} app_db - The database to be used by the application.
+ * @param {string} app_package_manager - The package manager to be used by the application.
+ * @throws {Error} If any error occurs during the reading or writing of the package.json file.
  */
 const updatePackageJson = async (app_orm, app_db, app_package_manager) => {
     let packageJson = JSON.parse(fs.readFileSync("./package.json", "utf8"))
@@ -117,15 +123,26 @@ const updatePackageJson = async (app_orm, app_db, app_package_manager) => {
 }
 
 /**
- * Set up the application
- * @param app_path
- * @param app_mode
- * @param app_orm
- * @param app_db
- * @param app_package_manager
- * @param clone_command
- * @param docker_support
- * @returns {Promise<void>}
+ * This function sets up the application by executing a series of commands and operations.
+ * It clones the repository,
+ * changes the current directory to the application path,
+ * copies necessary files,
+ * updates the package.json file,
+ * installs dependencies,
+ * sets up the database (if any),
+ * removes unnecessary directories and files,
+ * and initializes git and husky.
+ *
+ * @async
+ * @function setup
+ * @param {Object} options - The options for setting up the application.
+ * @param {string} options.app_path - The path of the application.
+ * @param {string} options.app_orm - The ORM to be used by the application.
+ * @param {string} options.app_db - The database to be used by the application.
+ * @param {string} options.app_package_manager - The package manager to be used by the application.
+ * @param {string} options.clone_command - The command to clone the repository.
+ * @param {boolean} options.docker_support - Whether the application supports Docker.
+ * @throws {Error} If any error occurs during the setup process.
  */
 exports.setup = async ({ app_path, app_orm, app_db, app_package_manager, clone_command, docker_support }) => {
     try {

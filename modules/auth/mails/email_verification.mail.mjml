@@ -1,0 +1,106 @@
+<mjml owa="desktop">
+    <mj-head>
+        <mj-font href="https://fonts.googleapis.com/css?family=Montserrat" name="Montserrat"></mj-font>
+        <mj-font href="https://fonts.googleapis.com/css?family=Raleway" name="Raleway"></mj-font>
+        <mj-font href="https://fonts.googleapis.com/css?family=Open Sans" name="Open Sans"></mj-font>
+        <mj-preview></mj-preview>
+    </mj-head>
+    <mj-body background-color="#f8f8f8">
+        <mj-section
+            background-color="#ffffff"
+            background-repeat="repeat"
+            background-size="auto"
+            padding-bottom="0px"
+            padding-top="0px"
+            padding="20px 0"
+            text-align="center"
+        >
+            <mj-column>
+                <mj-image
+                    align="center"
+                    alt=""
+                    border="none"
+                    height="auto"
+                    href=""
+                    padding-bottom="0px"
+                    padding-left="50px"
+                    padding-right="50px"
+                    padding-top="40px"
+                    padding="10px 25px"
+                    src="https://i.ibb.co/thT0kXz/undraw-Mail-re-duel.png"
+                    target="_blank"
+                    title=""
+                    width="300px"
+                ></mj-image>
+            </mj-column>
+        </mj-section>
+        <mj-section
+            background-color="#ffffff"
+            background-repeat="repeat"
+            background-size="auto"
+            padding-bottom="70px"
+            padding-top="30px"
+            padding="20px 0px 20px 0px"
+            text-align="center"
+        >
+            <mj-column>
+                <mj-text
+                    align="left"
+                    color="#797e82"
+                    font-family="Open Sans, Helvetica, Arial, sans-serif"
+                    font-size="13px"
+                    line-height="22px"
+                    padding-bottom="0px"
+                    padding-left="50px"
+                    padding-right="50px"
+                    padding-top="0px"
+                    padding="0px 25px 0px 25px"
+                >
+                    <h1 style="text-align: center; color: #000000; line-height: 32px">Welcome, {{userName}}</h1>
+                </mj-text>
+                <mj-text
+                    align="left"
+                    color="#797e82"
+                    font-family="Open Sans, Helvetica, Arial, sans-serif"
+                    font-size="13px"
+                    line-height="22px"
+                    padding-bottom="0px"
+                    padding-left="50px"
+                    padding-right="50px"
+                    padding-top="0px"
+                    padding="0px 25px 0px 25px"
+                >
+                    <p style="margin: 10px 0; text-align: center">
+                        You have successfully registered on our site.
+                    </p>
+                    <p style="margin: 10px 0; text-align: center">
+                        Please verify your email by clicking on the link below.
+                    </p>
+                </mj-text>
+                <mj-button
+                    align="center"
+                    background-color="#f45e43"
+                    border-radius="3px"
+                    color="#ffffff"
+                    font-family="Montserrat, Helvetica, Arial, sans-serif"
+                    font-size="13px"
+                    font-weight="bold"
+                    inner-padding="10px 25px"
+                    padding-bottom="0px"
+                    padding-left="25px"
+                    padding-right="25px"
+                    padding-top="0px"
+                    padding="10px 25px"
+                    target="_blank"
+                    text-decoration="none"
+                    text-transform="uppercase"
+                    vertical-align="middle"
+                >
+                    <a style="text-decoration: none; color: #ffffff" href="{{verificationLink}}"
+                        >Verify Email
+                    </a>
+                </mj-button>
+            </mj-column>
+        </mj-section>
+    </mj-body>
+</mjml>

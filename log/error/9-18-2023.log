@@ -1,0 +1,26 @@
+2023-09-18 11:50:50 ERROR Cannot read properties of undefined (reading 'create') 
+2023-09-18 11:52:03 ERROR Cannot read properties of undefined (reading 'create') 
+2023-09-18 12:03:14 ERROR Validation error 
+2023-09-18 12:21:10 ERROR Validation error 
+2023-09-18 12:25:40 ERROR Validation error 
+2023-09-18 12:33:42 ERROR WHERE parameter "email" has invalid "undefined" value 
+2023-09-18 12:33:54 ERROR WHERE parameter "email" has invalid "undefined" value 
+2023-09-18 12:34:08 ERROR WHERE parameter "email" has invalid "undefined" value 
+2023-09-18 12:49:49 ERROR Email already verified. 
+2023-09-18 12:55:22 ERROR Email already verified. 
+2023-09-18 12:58:43 ERROR this.failResponse is not a function 
+2023-09-18 13:01:39 ERROR this.failResponse is not a function 
+2023-09-18 15:46:23 ERROR Expected "payload" to be a plain object. 
+2023-09-18 15:46:47 ERROR Expected "payload" to be a plain object. 
+2023-09-18 15:47:04 ERROR Expected "payload" to be a plain object. 
+2023-09-18 15:48:55 ERROR Expected "payload" to be a plain object. 
+2023-09-18 15:49:35 ERROR Expected "payload" to be a plain object. 
+2023-09-18 15:50:49 ERROR Expected "payload" to be a plain object. 
+2023-09-18 15:51:18 ERROR Expected "payload" to be a plain object. 
+2023-09-18 15:51:44 ERROR Expected "payload" to be a plain object. 
+2023-09-18 15:52:35 ERROR Expected "payload" to be a plain object. 
+2023-09-18 15:54:38 ERROR "exp" should be a number of seconds 
+2023-09-18 15:56:54 ERROR Illegal arguments: string, undefined 
+2023-09-18 15:57:52 ERROR Attempted a SELECT query for model 'User' as `User` without selecting any columns 
+2023-09-18 16:30:05 ERROR Validation error 
+2023-09-18 16:32:30 ERROR Email already verified. 

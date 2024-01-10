@@ -18,10 +18,13 @@
     "license": "ISC",
     "dependencies": {
         "@3rdplanet/x-core": "file:../x-core",
+        "bcryptjs": "^2.4.3",
         "chalk": "^4.1.2",
         "inquirer": "^8.2.6",
+        "jsonwebtoken": "^9.0.2",
         "mysql2": "^3.6.1",
-        "sequelize": "^6.33.0"
+        "sequelize": "^6.33.0",
+        "simple-node-logger": "^21.8.12"
     },
     "devDependencies": {
         "husky": "^8.0.3",
@@ -44,5 +47,13 @@
         "semi": false,
         "singleQuote": false,
         "printWidth": 112
+    },
+    "xconfig": {
+        "orm": "sequelize",
+        "db": "mysql",
+        "package_manager": "bun",
+        "modules": [
+            "auth"
+        ]
     }
 }
