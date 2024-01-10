@@ -42,7 +42,6 @@ Framework X comprises a number of features that are designed to make it easy to 
 -   **Inbuilt support for Super Charged Cache** With Redis. See [Cache documentation](https://www.frameworkx.info/docs/overview/cache) for more details
 -   **Inbuilt support for Nodemailer with MJML** for sending emails. See [Mailer documentation](https://www.frameworkx.info/docs/overview/mail) for more details
 
-
 ## Features in the pipeline
 
 -   **Authentication Module** - We're working on a new authentication module that will allow you to create and manage users. This will be a great addition to the framework, and will be available as a separate package.
