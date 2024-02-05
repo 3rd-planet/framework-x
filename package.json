@@ -1,6 +1,6 @@
 {
     "name": "@3rdplanet/framework-x",
-    "version": "4.5.0",
+    "version": "4.5.1",
     "description": "Your Accelerated Path to API Creation",
     "main": "app/server.js",
     "scripts": {
@@ -17,7 +17,7 @@
     "author": "msamgan",
     "license": "ISC",
     "dependencies": {
-        "@3rdplanet/x-core": "^1.5.0",
+        "@3rdplanet/x-core": "/Users/msamgan/Projects/boilerplate/x-core",
         "chalk": "^4.1.2",
         "commander": "^9.5.0",
         "cors": "^2.8.5",

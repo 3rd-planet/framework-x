@@ -18,7 +18,8 @@ const dependencies = [
     "redis",
     "nodemailer",
     "mjml",
-    "@3rdplanet/x-core"
+    "@3rdplanet/x-core",
+    "helmet"
 ]
 
 /**
