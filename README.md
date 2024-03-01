@@ -9,7 +9,7 @@
 ![GitHub watchers](https://img.shields.io/github/watchers/3rd-planet/framework-x?style=social)
 
 <p align="center" width="100%">
-    <img width="45%" src="https://github.com/3rd-planet/framework-x/assets/29948727/8e60ecf3-9490-427b-a0ae-b57556c311d0">
+    <img width="" src="https://github.com/3rd-planet/framework-x/assets/29948727/2e39b413-e338-4261-9dee-6416482adfc2">
 </p>
 
 > Your Accelerated Path to API Creation
